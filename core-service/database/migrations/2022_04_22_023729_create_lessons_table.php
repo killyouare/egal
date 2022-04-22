@@ -14,7 +14,7 @@ class CreateLessonsTable extends Migration
     public function up()
     {
         Schema::create('lessons', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements("id");
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->string('theme', 256);
             $table->timestamps();

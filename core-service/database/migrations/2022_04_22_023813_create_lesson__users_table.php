@@ -14,8 +14,9 @@ class CreateLessonUsersTable extends Migration
     public function up()
     {
         Schema::create('lesson_users', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->bigIncrements("id");
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('lesson_id')->constrained()->cascadeOnDelete();
             $table->boolean('is_passed')->default(0);
             $table->timestamps();
