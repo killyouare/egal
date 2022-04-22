@@ -1,0 +1,16 @@
+[2022-04-22 04:21:54] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle($event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle($event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2022-04-22 04:22:45] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle($event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle($event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2022-04-22 04:25:46] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle(App\Events\SaveModelUserEvent $event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle(App\\Events\\SaveModelUserEvent $event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:19)
+[stacktrace]
+#0 {main}
+"} 
+[2022-04-22 04:26:58] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle(App\Events\SaveModelUserEvent $event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle(App\\Events\\SaveModelUserEvent $event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:19)
+[stacktrace]
+#0 {main}
+"} 

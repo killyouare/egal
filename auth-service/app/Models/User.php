@@ -4,26 +4,29 @@ namespace App\Models;
 
 use App\Exceptions\EmptyPasswordException;
 use App\Exceptions\PasswordHashException;
+use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
 use Egal\Auth\Tokens\UserMasterToken;
 use Egal\Auth\Tokens\UserServiceToken;
 use Egal\AuthServiceDependencies\Exceptions\LoginException;
 use Egal\AuthServiceDependencies\Exceptions\UserNotIdentifiedException;
 use Egal\AuthServiceDependencies\Models\User as BaseUser;
-use Egal\Model\Traits\UsesUuidKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 /**
  * @property $id            {@property-type field}  {@primary-key}
  * @property $email         {@property-type field}  {@validation-rules required|string|email|unique:users,email}
- * @property $password      {@property-type field}  {@validation-rules required|string}
+ * @property $password      {@property-type field}  
+ * @property $last_name     {@property-type fake-field} 
+ * @property $phone     {@property-type fake-field} 
+ * @property $first_name     {@property-type fake-field} 
  * @property $created_at    {@property-type field}
  * @property $updated_at    {@property-type field}
- *
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *
@@ -35,34 +38,45 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 class User extends BaseUser
 {
 
-    use UsesUuidKey;
     use HasFactory;
     use HasRelationships;
 
     protected $hidden = [
         'password',
     ];
-
+    protected $fillable = [
+        'last_name',
+        "id",
+        'first_name',
+        "phone"
+    ];
     protected $guarder = [
         'created_at',
         'updated_at',
     ];
 
-    public static function actionRegister(string $email, string $password): User
+    protected $dispatchesEvents = [
+        'saving' => SaveModelUserEvent::class,
+    ];
+
+    public static function actionRegister(array $arguments = []): User
     {
-        if (!$password) {
+        if (!$arguments['password']) {
             throw new EmptyPasswordException();
         }
 
         $user = new static();
-        $user->setAttribute('email', $email);
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $hashedPassword = password_hash($arguments['password'], PASSWORD_BCRYPT);
 
         if (!$hashedPassword) {
             throw new PasswordHashException();
         }
-
+        $user->setAttribute("id", Str::uuid());
+        $user->setAttribute('email', $arguments['email']);
         $user->setAttribute('password', $hashedPassword);
+        $user->setAttribute('last_name', $arguments['last_name']);
+        $user->setAttribute('first_name', $arguments['first_name']);
+        $user->setAttribute('phone', $arguments['phone']);
         $user->save();
 
         return $user;
@@ -129,5 +143,4 @@ class User extends BaseUser
     {
         return array_unique($this->permissions->pluck('id')->toArray());
     }
-
 }
