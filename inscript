@@ -1,0 +1,12 @@
+#!/bin/bash
+cp .env.example .env
+cd ./auth-service
+composer u --ignore-platform-reqs
+cd ../core-service
+composer u --ignore-platform-reqs
+cd ../
+if lsof -i :5432 
+then 
+sudo ss -lptn 'sport = :5432' -K
+fi
+sudo docker-compose up -d --build

@@ -14,10 +14,11 @@ class CreateCourseUsersTable extends Migration
     public function up()
     {
         Schema::create('course_users', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->integer('percentage_passing')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -19,7 +19,7 @@ class SendMessageListener
         $request = new \Egal\Core\Communication\Request(
             'core', // Сервис назначения запроса
             'User', // К какой модели обращение
-            'test', // К какому действию обращение
+            'create', // К какому действию обращение
             [
                 "attributes" => [
                     "id" =>  $attributes['id'],

@@ -11,6 +11,7 @@ use Egal\Auth\Tokens\UserServiceToken;
 use Egal\AuthServiceDependencies\Exceptions\LoginException;
 use Egal\AuthServiceDependencies\Exceptions\UserNotIdentifiedException;
 use Egal\AuthServiceDependencies\Models\User as BaseUser;
+use Egal\Model\Traits\UsesUuidKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
@@ -19,14 +20,14 @@ use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 /**
- * @property $id            {@property-type field}  {@primary-key}
- * @property $email         {@property-type field}  {@validation-rules required|string|email|unique:users,email}
- * @property $password      {@property-type field}  
- * @property $last_name     {@property-type fake-field} 
- * @property $phone     {@property-type fake-field} 
- * @property $first_name     {@property-type fake-field} 
- * @property $created_at    {@property-type field}
- * @property $updated_at    {@property-type field}
+ * @property $id                        {@property-type field}  {@primary-key}
+ * @property $email                     {@property-type field}  {@validation-rules required|string|email|unique:users,email}
+ * @property $password                  {@property-type field}  
+ * @property $last_name                 {@property-type fake-field} 
+ * @property $phone                     {@property-type fake-field} 
+ * @property $first_name                {@property-type fake-field} 
+ * @property $created_at                {@property-type field}
+ * @property $updated_at                {@property-type field}
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *
@@ -34,21 +35,25 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @action login                        {@statuses-access guest}
  * @action loginToService               {@statuses-access guest}
  * @action refreshUserMasterToken       {@statuses-access guest}
+ * @action getItems                     {@statuses-access guest}
  */
 class User extends BaseUser
 {
-
     use HasFactory;
     use HasRelationships;
+
+
+    protected $keyType = "string";
+
 
     protected $hidden = [
         'password',
     ];
     protected $fillable = [
+        'id',
         'last_name',
-        "id",
         'first_name',
-        "phone"
+        'phone'
     ];
     protected $guarder = [
         'created_at',
@@ -56,27 +61,27 @@ class User extends BaseUser
     ];
 
     protected $dispatchesEvents = [
-        'saving' => SaveModelUserEvent::class,
+        'creating' => SaveModelUserEvent::class,
     ];
 
-    public static function actionRegister(array $arguments = []): User
+    public static function actionRegister(array $attributes = []): User
     {
-        if (!$arguments['password']) {
+        if (!$attributes['password']) {
             throw new EmptyPasswordException();
         }
 
         $user = new static();
-        $hashedPassword = password_hash($arguments['password'], PASSWORD_BCRYPT);
+        $hashedPassword = password_hash($attributes['password'], PASSWORD_BCRYPT);
 
         if (!$hashedPassword) {
             throw new PasswordHashException();
         }
-        $user->setAttribute("id", Str::uuid());
-        $user->setAttribute('email', $arguments['email']);
+        $user->setAttribute($user->getKeyName(), (string)Str::uuid());
+        $user->setAttribute('email', $attributes['email']);
         $user->setAttribute('password', $hashedPassword);
-        $user->setAttribute('last_name', $arguments['last_name']);
-        $user->setAttribute('first_name', $arguments['first_name']);
-        $user->setAttribute('phone', $arguments['phone']);
+        $user->setAttribute('last_name', $attributes['last_name']);
+        $user->setAttribute('first_name', $attributes['first_name']);
+        $user->setAttribute('phone', $attributes['phone']);
         $user->save();
 
         return $user;

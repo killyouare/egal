@@ -14,8 +14,9 @@ class ValidateListener
 
     public function handle(SaveModelUserEvent $event): void
     {
-        $attributes = $event->user->getAttributes();
 
+
+        $attributes = $event->user->getAttributes();
         $validator = Validator::make($attributes, [
             "id" =>  'required',
             "first_name" =>  'required|string',

@@ -14,10 +14,10 @@ use Egal\Model\Model as EgalModel;
  *
  * @action getMetadata {@statuses-access guest|logged}
  * @action getItem {@statuses-access guest|logged}
- * @action getItems {@statuses-access guest} {@roles-access super_first_role|super_second_role}
- * @action create {@statuses-access guest} {@roles-access super_first_role,super_second_role}
- * @action update {@statuses-access logged} {@permissions-access super_first_permission|super_second_permission}
- * @action delete {@statuses-access logged} {@permissions-access super_first_permission,super_second_permission}
+ * @action getItems {@statuses-access guest}
+ * @action create {@statuses-access guest}
+ * @action update {@statuses-access logged} 
+ * @action delete {@statuses-access logged}
  */
 class User extends EgalModel
 {
