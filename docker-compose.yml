@@ -9,6 +9,9 @@ services:
       context: ./core-service
     volumes:
       - ./core-service:/app
+    depends_on:
+      - "database"
+      - "web"
   auth:
     extends:
       file: ./deploy/docker-compose.yml
@@ -17,15 +20,20 @@ services:
       context: ./auth-service
     volumes:
       - ./auth-service:/app
+    depends_on:
+      - "core"
   web:
     extends:
       file: ./deploy/docker-compose.yml
       service: web-service
+    depends_on:
+      - "rabbitmq"
   database:
     extends:
       file: ./deploy/docker-compose.yml
       service: database
-
+    depends_on:
+      - "rabbitmq"
   rabbitmq:
     extends:
       file: ./deploy/docker-compose.yml

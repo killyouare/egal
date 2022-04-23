@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    container_name: ${PROJECT_NAME}-rabbitmq
+    container_name: ${PROJECT_NAME:-project}-rabbitmq
     image: ${RABBITMQ_TAG:-bitnami/rabbitmq:latest}
     environment:
       RABBITMQ_USERNAME: ${RABBITMQ_USERNAME:-admin}
@@ -11,21 +11,21 @@ services:
       - ${RABBITMQ_MANAGER_PORT:-15672}:15672
 
   web-service:
-    container_name: ${PROJECT_NAME}-web-service
+    container_name: ${PROJECT_NAME:-project}-web-service
     image: egalbox/web-service:2.2.1
-    restart: always
+    restart: on-failure
     ports:
       - ${WEB_SERVICE_PORT:-80}:8080
     environment:
-      PROJECT_NAME: ${PROJECT_NAME}
+      PROJECT_NAME: ${PROJECT_NAME:-project}
       APP_SERVICE_NAME: web
-      RABBITMQ_HOST: ${PROJECT_NAME}-rabbitmq
+      RABBITMQ_HOST: ${PROJECT_NAME:-project}-rabbitmq
       RABBITMQ_USER: ${RABBITMQ_USERNAME:-admin}
       RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
-      WAIT_HOSTS: ${PROJECT_NAME}-rabbitmq:5672
+      WAIT_HOSTS: ${PROJECT_NAME:-project}-rabbitmq:5672
 
   database:
-    container_name: ${PROJECT_NAME}-database
+    container_name: ${PROJECT_NAME:-project}-database
     image: egalbox/postgres:2.0.0
     restart: always
     ports:
@@ -36,31 +36,32 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-password}
 
   auth-service:
-    container_name: ${PROJECT_NAME}-auth-service
+    container_name: ${PROJECT_NAME:-project}-auth-service
     tty: true
     environment:
       APP_SERVICE_NAME: auth
+      APP_SERVICES: core:q4C3YNiUe9*Ln8MH@b7#TP6fJk2m1h0z
       APP_SERVICE_KEY: uZsLnAJz35FWUTVx@eg#Xirv6I*jcw2Y
       DB_DATABSE: auth
-      DB_HOST: ${PROJECT_NAME}-database
+      DB_HOST: ${PROJECT_NAME:-project}-database
       DB_PASSWORD: ${DATABASE_PASSWORD:-password}
-      RABBITMQ_HOST: ${PROJECT_NAME}-rabbitmq
+      RABBITMQ_HOST: ${PROJECT_NAME:-project}-rabbitmq
       RABBITMQ_USER: ${RABBITMQ_USERNAME:-admin}
       RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
-      WAIT_HOSTS: ${PROJECT_NAME}-rabbitmq:5672, ${PROJECT_NAME}-database:5432
+      WAIT_HOSTS: ${PROJECT_NAME:-project}-rabbitmq:5672, ${PROJECT_NAME:-project}-database:5432
     restart: on-failure
-    
+
   core-service:
-    container_name: ${PROJECT_NAME}-core-service
+    container_name: ${PROJECT_NAME:-project}-core-service
     tty: true
     environment:
       APP_SERVICE_NAME: core
-      APP_SERVICE_KEY: uiA3ZsU#x@ecwgJrv6ITjLV*nzX5FW2Y
+      APP_SERVICE_KEY: q4C3YNiUe9*Ln8MH@b7#TP6fJk2m1h0z
       DB_DATABSE: core
-      DB_HOST: ${PROJECT_NAME}-database
+      DB_HOST: ${PROJECT_NAME:-project}-database
       DB_PASSWORD: ${DATABASE_PASSWORD:-password}
-      RABBITMQ_HOST: ${PROJECT_NAME}-rabbitmq
+      RABBITMQ_HOST: ${PROJECT_NAME:-project}-rabbitmq
       RABBITMQ_USER: ${RABBITMQ_USERNAME:-admin}
       RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-password}
-      WAIT_HOSTS: ${PROJECT_NAME}-rabbitmq:5672, ${PROJECT_NAME}-database:5432
+      WAIT_HOSTS: ${PROJECT_NAME:-project}-rabbitmq:5672, ${PROJECT_NAME:-project}-database:5432
     restart: on-failure

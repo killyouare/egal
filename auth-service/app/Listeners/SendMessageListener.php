@@ -4,9 +4,7 @@ namespace App\Listeners;
 
 use Egal\Core\Listeners\EventListener;
 use App\Events\SaveModelUserEvent;
-use App\Rules\PhoneNumberRule;
-use Illuminate\Support\Facades\Validator;
-use Egal\Model\Exceptions\ValidateException;
+use Illuminate\Support\Facades\Log;
 
 class SendMessageListener
 {

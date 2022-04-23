@@ -35,15 +35,14 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @action login                        {@statuses-access guest}
  * @action loginToService               {@statuses-access guest}
  * @action refreshUserMasterToken       {@statuses-access guest}
- * @action getItems                     {@statuses-access guest}
+ * @action getItems                     {@statuses-access logged}
  */
 class User extends BaseUser
 {
     use HasFactory;
     use HasRelationships;
 
-
-    protected $keyType = "string";
+    public $incrementing = false;
 
 
     protected $hidden = [

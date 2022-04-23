@@ -1,16 +1,189 @@
-[2022-04-22 04:21:54] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle($event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle($event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:13)
+[2022-04-22 17:25:13] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
 [stacktrace]
-#0 {main}
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
 "} 
-[2022-04-22 04:22:45] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle($event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle($event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:13)
+[2022-04-22 17:25:13] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
 [stacktrace]
-#0 {main}
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
 "} 
-[2022-04-22 04:25:46] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle(App\Events\SaveModelUserEvent $event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle(App\\Events\\SaveModelUserEvent $event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:19)
+[2022-04-22 17:30:15] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
 [stacktrace]
-#0 {main}
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
 "} 
-[2022-04-22 04:26:58] production.ERROR: Declaration of App\Listeners\SaveModelUserListener::handle(App\Events\SaveModelUserEvent $event): void must be compatible with Egal\Core\Listeners\EventListener::handle(): void {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Declaration of App\\Listeners\\SaveModelUserListener::handle(App\\Events\\SaveModelUserEvent $event): void must be compatible with Egal\\Core\\Listeners\\EventListener::handle(): void at /app/app/Listeners/SaveModelUserListener.php:19)
+[2022-04-22 17:30:15] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
 [stacktrace]
-#0 {main}
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:33:24] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:33:24] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:33:58] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:33:58] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:35:55] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:35:55] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:41:30] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 17:41:30] production.ERROR: Incorrect app services environment variable pattern! [core] {"exception":"[object] (Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException(code: 500): Incorrect app services environment variable pattern! [core] at /app/vendor/egal/framework/src/AuthServiceDependencies/Exceptions/IncorrectAppServicesEnvironmentVariablePatternException.php:18)
+[stacktrace]
+#0 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(28): Egal\\AuthServiceDependencies\\Exceptions\\IncorrectAppServicesEnvironmentVariablePatternException::make('core')
+#1 /app/vendor/egal/framework/src/AuthServiceDependencies/ServiceProvider.php(16): Egal\\AuthServiceDependencies\\ServiceProvider->registerServices()
+#2 /app/vendor/laravel/lumen-framework/src/Application.php(233): Egal\\AuthServiceDependencies\\ServiceProvider->register()
+#3 /app/bootstrap/app.php(71): Laravel\\Lumen\\Application->register(Object(Egal\\AuthServiceDependencies\\ServiceProvider))
+#4 /app/artisan(18): require('/app/bootstrap/...')
+#5 {main}
+"} 
+[2022-04-22 20:47:42] production.ERROR: Connection reset by peer {"exception":"[object] (PhpAmqpLib\\Exception\\AMQPConnectionClosedException(code: 104): Connection reset by peer at /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php:266)
+[stacktrace]
+#0 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(408): PhpAmqpLib\\Wire\\IO\\StreamIO->write('\\x01\\x00\\x01\\x00\\x00\\x00\\v\\x00\\x14\\x00(\\x00\\x00\\x00\\x00...')
+#1 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(536): PhpAmqpLib\\Connection\\AbstractConnection->write('\\x01\\x00\\x01\\x00\\x00\\x00\\v\\x00\\x14\\x00(\\x00\\x00\\x00\\x00...')
+#2 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(248): PhpAmqpLib\\Connection\\AbstractConnection->send_channel_method_frame(1, Array, Object(PhpAmqpLib\\Wire\\AMQPWriter))
+#3 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AMQPChannel.php(198): PhpAmqpLib\\Channel\\AbstractChannel->send_method_frame(Array, Object(PhpAmqpLib\\Wire\\AMQPWriter))
+#4 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(297): PhpAmqpLib\\Channel\\AMQPChannel->close()
+#5 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(108): Egal\\Core\\Bus\\RabbitMQBus->__call('close', Array)
+#6 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(32): Egal\\Core\\Bus\\RabbitMQBus->stopProcessingMessages()
+#7 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php(301): Egal\\Core\\Commands\\EgalRunCommand->stop(15, Array)
+#8 [internal function]: PhpAmqpLib\\Wire\\IO\\StreamIO->error_handler(2, 'stream_select()...', '/app/vendor/php...', 354)
+#9 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php(354): stream_select(Array, NULL, NULL, NULL, 0)
+#10 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/AbstractIO.php(87): PhpAmqpLib\\Wire\\IO\\StreamIO->do_select(NULL, 0)
+#11 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(129): PhpAmqpLib\\Wire\\IO\\AbstractIO->select(NULL, 0)
+#12 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(155): PhpAmqpLib\\Wire\\AMQPReader->wait()
+#13 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(103): PhpAmqpLib\\Wire\\AMQPReader->rawread(7)
+#14 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(595): PhpAmqpLib\\Wire\\AMQPReader->read(7)
+#15 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(651): PhpAmqpLib\\Connection\\AbstractConnection->wait_frame(0)
+#16 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(235): PhpAmqpLib\\Connection\\AbstractConnection->wait_channel(1, 0)
+#17 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(352): PhpAmqpLib\\Channel\\AbstractChannel->next_frame(0)
+#18 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(297): PhpAmqpLib\\Channel\\AbstractChannel->wait()
+#19 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(102): Egal\\Core\\Bus\\RabbitMQBus->__call('wait', Array)
+#20 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(26): Egal\\Core\\Bus\\RabbitMQBus->processMessages()
+#21 /app/vendor/illuminate/container/BoundMethod.php(36): Egal\\Core\\Commands\\EgalRunCommand->handle()
+#22 /app/vendor/illuminate/container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#23 /app/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#24 /app/vendor/illuminate/container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Egal\\Core\\Application), Array, Object(Closure))
+#25 /app/vendor/illuminate/container/Container.php(653): Illuminate\\Container\\BoundMethod::call(Object(Egal\\Core\\Application), Array, Array, NULL)
+#26 /app/vendor/illuminate/console/Command.php(136): Illuminate\\Container\\Container->call(Array)
+#27 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(42): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#28 /app/vendor/symfony/console/Command/Command.php(298): Egal\\Core\\Commands\\EgalRunCommand->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#29 /app/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#30 /app/vendor/symfony/console/Application.php(1015): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#31 /app/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand(Object(Egal\\Core\\Commands\\EgalRunCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#32 /app/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#33 /app/vendor/illuminate/console/Application.php(94): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#34 /app/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#35 /app/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#36 {main}
+
+[previous exception] [object] (ErrorException(code: 0): fwrite(): Send of 19 bytes failed with errno=104 Connection reset by peer at /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php:251)
+[stacktrace]
+#0 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php(252): PhpAmqpLib\\Wire\\IO\\AbstractIO->throwOnError()
+#1 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(408): PhpAmqpLib\\Wire\\IO\\StreamIO->write('\\x01\\x00\\x01\\x00\\x00\\x00\\v\\x00\\x14\\x00(\\x00\\x00\\x00\\x00...')
+#2 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(536): PhpAmqpLib\\Connection\\AbstractConnection->write('\\x01\\x00\\x01\\x00\\x00\\x00\\v\\x00\\x14\\x00(\\x00\\x00\\x00\\x00...')
+#3 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(248): PhpAmqpLib\\Connection\\AbstractConnection->send_channel_method_frame(1, Array, Object(PhpAmqpLib\\Wire\\AMQPWriter))
+#4 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AMQPChannel.php(198): PhpAmqpLib\\Channel\\AbstractChannel->send_method_frame(Array, Object(PhpAmqpLib\\Wire\\AMQPWriter))
+#5 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(297): PhpAmqpLib\\Channel\\AMQPChannel->close()
+#6 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(108): Egal\\Core\\Bus\\RabbitMQBus->__call('close', Array)
+#7 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(32): Egal\\Core\\Bus\\RabbitMQBus->stopProcessingMessages()
+#8 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php(301): Egal\\Core\\Commands\\EgalRunCommand->stop(15, Array)
+#9 [internal function]: PhpAmqpLib\\Wire\\IO\\StreamIO->error_handler(2, 'stream_select()...', '/app/vendor/php...', 354)
+#10 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/StreamIO.php(354): stream_select(Array, NULL, NULL, NULL, 0)
+#11 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/IO/AbstractIO.php(87): PhpAmqpLib\\Wire\\IO\\StreamIO->do_select(NULL, 0)
+#12 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(129): PhpAmqpLib\\Wire\\IO\\AbstractIO->select(NULL, 0)
+#13 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(155): PhpAmqpLib\\Wire\\AMQPReader->wait()
+#14 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Wire/AMQPReader.php(103): PhpAmqpLib\\Wire\\AMQPReader->rawread(7)
+#15 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(595): PhpAmqpLib\\Wire\\AMQPReader->read(7)
+#16 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Connection/AbstractConnection.php(651): PhpAmqpLib\\Connection\\AbstractConnection->wait_frame(0)
+#17 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(235): PhpAmqpLib\\Connection\\AbstractConnection->wait_channel(1, 0)
+#18 /app/vendor/php-amqplib/php-amqplib/PhpAmqpLib/Channel/AbstractChannel.php(352): PhpAmqpLib\\Channel\\AbstractChannel->next_frame(0)
+#19 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(297): PhpAmqpLib\\Channel\\AbstractChannel->wait()
+#20 /app/vendor/egal/framework/src/Core/Bus/RabbitMQBus.php(102): Egal\\Core\\Bus\\RabbitMQBus->__call('wait', Array)
+#21 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(26): Egal\\Core\\Bus\\RabbitMQBus->processMessages()
+#22 /app/vendor/illuminate/container/BoundMethod.php(36): Egal\\Core\\Commands\\EgalRunCommand->handle()
+#23 /app/vendor/illuminate/container/Util.php(40): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#24 /app/vendor/illuminate/container/BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#25 /app/vendor/illuminate/container/BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Egal\\Core\\Application), Array, Object(Closure))
+#26 /app/vendor/illuminate/container/Container.php(653): Illuminate\\Container\\BoundMethod::call(Object(Egal\\Core\\Application), Array, Array, NULL)
+#27 /app/vendor/illuminate/console/Command.php(136): Illuminate\\Container\\Container->call(Array)
+#28 /app/vendor/egal/framework/src/Core/Commands/EgalRunCommand.php(42): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#29 /app/vendor/symfony/console/Command/Command.php(298): Egal\\Core\\Commands\\EgalRunCommand->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#30 /app/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#31 /app/vendor/symfony/console/Application.php(1015): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#32 /app/vendor/symfony/console/Application.php(299): Symfony\\Component\\Console\\Application->doRunCommand(Object(Egal\\Core\\Commands\\EgalRunCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#33 /app/vendor/symfony/console/Application.php(171): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#34 /app/vendor/illuminate/console/Application.php(94): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#35 /app/vendor/laravel/lumen-framework/src/Console/Kernel.php(116): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#36 /app/artisan(35): Laravel\\Lumen\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#37 {main}
 "} 
