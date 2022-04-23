@@ -1,6 +1,22 @@
 version: "3.6"
 
 services:
+  web:
+    extends:
+      file: ./deploy/docker-compose.yml
+      service: web-service
+    depends_on:
+      - database
+  database:
+    extends:
+      file: ./deploy/docker-compose.yml
+      service: database
+    depends_on:
+      - rabbitmq
+  rabbitmq:
+    extends:
+      file: ./deploy/docker-compose.yml
+      service: rabbitmq
   core:
     extends:
       file: ./deploy/docker-compose.yml
@@ -10,8 +26,7 @@ services:
     volumes:
       - ./core-service:/app
     depends_on:
-      - "database"
-      - "web"
+      - database
   auth:
     extends:
       file: ./deploy/docker-compose.yml
@@ -21,20 +36,4 @@ services:
     volumes:
       - ./auth-service:/app
     depends_on:
-      - "core"
-  web:
-    extends:
-      file: ./deploy/docker-compose.yml
-      service: web-service
-    depends_on:
-      - "rabbitmq"
-  database:
-    extends:
-      file: ./deploy/docker-compose.yml
-      service: database
-    depends_on:
-      - "rabbitmq"
-  rabbitmq:
-    extends:
-      file: ./deploy/docker-compose.yml
-      service: rabbitmq
+      - core

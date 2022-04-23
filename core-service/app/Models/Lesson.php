@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Egal\Model\Model as EgalModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property $id {@property-type field} {@prymary-key}
@@ -20,6 +21,9 @@ use Egal\Model\Model as EgalModel;
  */
 class Lesson extends EgalModel
 {
+  use HasFactory;
+
+
   protected $fillable = [
     'course_id', 'theme',
   ];

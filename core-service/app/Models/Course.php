@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Egal\Model\Model as EgalModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property $id {@property-type field} {@prymary-key}
@@ -15,14 +16,16 @@ use Egal\Model\Model as EgalModel;
  * @property $updated_at {@property-type field}
  *
  * @action getMetadata {@roles-access admin}
- * @action getItem {@roles-access admin}
- * @action getItems {@roles-access admin}
+ * @action getItem {@roles-access user}
+ * @action getItems {@roles-access user}
  * @action create {@roles-access admin}
  * @action update {@roles-access admin}
  * @action delete {@roles-access admin}
  */
 class Course extends EgalModel
 {
+  use HasFactory;
+
   protected $fillable = [
     "title",
     "student_capacity",

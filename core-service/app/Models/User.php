@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Egal\Model\Model as EgalModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property uuid $id {@property-type field} {@primary-key}
@@ -21,6 +22,8 @@ use Egal\Model\Model as EgalModel;
  */
 class User extends EgalModel
 {
+  use HasFactory;
+
   public $incrementing = false;
 
   protected $fillable = [
