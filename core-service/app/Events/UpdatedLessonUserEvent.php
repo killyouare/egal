@@ -2,14 +2,14 @@
 
 namespace App\Events;
 
+use App\Models\LessonUser;
 use Egal\Core\Events\Event;
 
 class UpdatedLessonUserEvent extends Event
 {
-
-    public function __construct()
+    public $lu;
+    public function __construct(LessonUser $lu)
     {
-        // TODO
+        $this->lu = $lu;
     }
-
 }

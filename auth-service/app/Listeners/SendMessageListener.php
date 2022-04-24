@@ -27,7 +27,14 @@ class SendMessageListener
                 ]
             ],
         );
+        $request->call();
 
-        $request->send();
+        $response = $request->getResponse();
+        if ($response->getStatusCode() != 200) {
+            $actionErrorMessage = $response->getActionErrorMessage(); // Получение сообщения ошибки
+
+        } else {
+            $actionResultMessage = $response->getActionResultMessage(); // Получение сообщения результата выполнения [действия](/_glossary?id=действия) }
+        }
     }
 }

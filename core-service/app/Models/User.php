@@ -6,7 +6,7 @@ use Egal\Model\Model as EgalModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * @property uuid $id {@property-type field} {@primary-key}
+ * @property uuid $id {@property-type field} {@primary-key} {@validation-rules required|uuid}
  * @property string $phone {@property-type field} {@validation-rules required|string|unique:users}
  * @property string $last_name {@property-type field} {@validation-rules required|string}
  * @property string $first_name {@property-type field} {@validation-rules required|string}
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access admin}
  * @action getItems {@statuses-access guest}
- * @action create {@statuses-access guest}
+ * @action create  {@statuses-access logged} {@services-access auth|core}
  * @action update {@roles-access admin}
  * @action delete {@roles-access admin}
  */

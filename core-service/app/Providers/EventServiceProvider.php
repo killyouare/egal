@@ -11,6 +11,7 @@ use App\Listeners\CheckUserIdListener;
 use App\Listeners\FreePlaceListener;
 use App\Listeners\UpdateCourseListener;
 use App\Listeners\CreateLessonUserListener;
+use App\Listeners\UniqueListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
 
     protected $listen = [
         CreatingModelCourseUserEvent::class => [
+            UniqueListener::class,
             CheckUserIdListener::class,
             FreePlaceListener::class,
         ],

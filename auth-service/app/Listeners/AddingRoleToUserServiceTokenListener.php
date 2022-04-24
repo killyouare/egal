@@ -10,7 +10,6 @@ class AdditionUserServiceTokenListener extends EventListener
 {
     public function handle(): void
     {
-        Session::getUserServiceToken()->addRole('admin');
         Session::getUserServiceToken()->addRole('user');
     }
 }

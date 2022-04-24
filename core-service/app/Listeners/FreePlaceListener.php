@@ -11,8 +11,8 @@ class FreePlaceListener
 
     public function handle(CreatingModelCourseUserEvent $event): void
     {
-        $course = Course::where("id", $event->cu->getAttribute('course_id'))->first();
-        if ($course->student_capacity < 1) {
+        $course = Course::actionGetItem($event->cu->getAttribute('course_id'));
+        if ($course['student_capacity'] < 1) {
             throw new StudentCapacityException();
         }
     }

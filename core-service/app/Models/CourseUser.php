@@ -8,8 +8,8 @@ use App\Events\CreatedModelCourseUserEvent;
 
 /**
  * @property $id {@property-type field} {@prymary-key}
- * @property $user_id {@property-type relation} {@validation-rules required|uuid}
- * @property $course_id {@property-type relation} {@validation-rules required|int}
+ * @property $user_id {@property-type field} {@validation-rules required|uuid}
+ * @property $course_id {@property-type field} {@validation-rules required|int
  * @property $percentage_passing {@property-type field}
  * @property $created_at {@property-type field}
  * @property $updated_at {@property-type field}

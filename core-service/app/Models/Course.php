@@ -15,9 +15,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property $created_at {@property-type field}
  * @property $updated_at {@property-type field}
  *
+ * @property Collection $lessons {@property-type relation}
+ * 
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access user}
- * @action getItems {@roles-access user}
+ * @action getItems {@statuses-access logged}
  * @action create {@roles-access admin}
  * @action update {@roles-access admin}
  * @action delete {@roles-access admin}
