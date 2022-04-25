@@ -30,6 +30,7 @@ http://localhost:80/core/
 
 - [Все запросы](https://www.postman.com/martian-moon-565933/workspace/egal)
 - Добавить в env 
+
 |    Атрибут    | Вводимые данные |
 | :-----------: | :-------------: |
 |  adminEmail   | admin@admin.com |
