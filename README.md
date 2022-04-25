@@ -10,7 +10,7 @@
   git clone https://github.com/killyouare/egal.git
   ```
 
-- Загрузить zip-архив с [github](https://github.com/killyouare/Lumentt). После загрузки распаковать в текущую директорию.
+- Загрузить zip-архив с [github](https://github.com/killyouare/egal). После загрузки распаковать в текущую директорию.
 
 ### 2. Настройка
 
