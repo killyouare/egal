@@ -7,9 +7,9 @@ use App\Models\CourseUser;
 
 class CreatingModelCourseUserEvent extends Event
 {
-    public $cu;
+    public $model;
     public function __construct(CourseUser $data)
     {
-        $this->cu = $data;
+        $this->model = $data;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\UpdatedLessonUserEvent;
 use App\Models\CourseUser;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\LessonUser;
 use Egal\Core\Listeners\GlobalEventListener;
 use Egal\Core\Listeners\EventListener;
@@ -13,24 +14,38 @@ class UpdatedLessonUserListener
 {
     public function handle(UpdatedLessonUserEvent $event): void
     {
-        $lessonuser = $event->lu->getAttributes();
-
-        $user_id = $lessonuser['user_id'];
-
-        $lessons = Course::actionGetItems(null, [
-            "lessons"
-        ], [
+        $lessonuser = $event->model->getAttributes();
+        $lesson = Lesson::actionGetItem($lessonuser['lesson_id']);
+        $lessons = Lesson::actionGetItems(null, [], [
             [
-                "id", "eq", $lessonuser['course_id']
-            ]
+                "course_id", "eq", $lesson['course_id']
+            ],
+
         ], []);
-        $complitedLessonsCount = LessonUser::whereIn('lesson_id', $lessons)->where([
-            'user_id' => $user_id,
-            'is_passed' => 1
-        ])->count();
-        CourseUser::where([
-            'user_id' => $user_id,
-            'course_id' => $course_id
-        ])->first()->update(['percentage_passing' => round($complitedLessonsCount / $lessons->count() * 100)]);
+        $lessonsCount = Lesson::actionGetCount([
+            [
+                "course_id", "eq", $lesson['course_id']
+            ],
+
+        ])['count'];
+        $count = 0;
+        foreach ($lessons['items'] as $lesson) {
+            $count += LessonUser::actionGetCount([
+                ["user_id", "eq", $lessonuser['user_id']],
+                "AND",
+                ["lesson_id", "eq", $lesson['id']],
+                "AND",
+                ["is_passed", "eq", true]
+            ])['count'];
+        }
+        $cuId = CourseUser::actionGetItems(null, [], [
+            ['user_id', 'eq', $lessonuser['user_id']],
+            "AND",
+            ['course_id', "eq", $lesson['course_id']]
+        ], [])['items'][0]['id'];
+
+        CourseUser::actionUpdate($cuId, [
+            'percentage_passing' => round($count / $lessonsCount * 100)
+        ]);
     }
 }

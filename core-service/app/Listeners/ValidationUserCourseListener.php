@@ -2,22 +2,19 @@
 
 namespace App\Listeners;
 
-use App\Events\CreatingModelCourseUserEvent;
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
+use App\Events\UpdatingLessonUserEvent;
+use App\Rules\CourseDriedRule;
 use Egal\Model\Exceptions\ValidateException;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
-class UniqueListener
+class ValidationUserCourseListener
 {
 
-    public function handle(CreatingModelCourseUserEvent $event): void
+    public function handle(UpdatingLessonUserEvent $event): void
     {
         $attributes = $event->model->getAttributes();
-        $course_id = $attributes['course_id'];
         $validator = Validator::make($attributes, [
-            "user_id" => "unique:course_users,user_id,null,null,course_id,$course_id",
+            "lesson_id" => [new CourseDriedRule],
         ]);
 
         if ($validator->fails()) {

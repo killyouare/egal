@@ -8,9 +8,9 @@ use Egal\Core\Events\Event;
 class CreatedModelCourseUserEvent extends Event
 {
 
-    public $cu;
+    public $model;
     public function __construct(CourseUser $data)
     {
-        $this->cu = $data;
+        $this->model = $data;
     }
 }

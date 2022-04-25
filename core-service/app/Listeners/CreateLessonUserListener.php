@@ -14,16 +14,16 @@ class CreateLessonUserListener
 
     public function handle(CreatedModelCourseUserEvent $event): void
     {
-        $attributes = $event->cu->getAttributes();
+        $attributes = $event->model->getAttributes();
         $lessons = Lesson::actionGetItems(null, [], [
             ["course_id", "eq", $attributes['course_id']]
         ], []);
-        dd($lessons);
-        foreach ($lessons as $lesson) {
-            LessonUser::actionCreate([
+        foreach ($lessons['items'] as $lesson) {
+            $lessonuser = LessonUser::actionCreate([
                 'user_id' => $attributes['user_id'],
-                'lesson_id' => $lesson->id,
+                'lesson_id' => $lesson['id'],
             ]);
+            var_dump($lessonuser);
         }
     }
 }

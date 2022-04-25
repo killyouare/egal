@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access admin}
- * @action getItems {@statuses-access guest}
- * @action create  {@statuses-access logged} {@services-access auth|core}
+ * @action getItems {@statuses-access logged}
+ * @action create  {@statuses-access logged} {@services-access auth}
  * @action update {@roles-access admin}
  * @action delete {@roles-access admin}
  */

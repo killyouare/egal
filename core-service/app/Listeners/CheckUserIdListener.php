@@ -11,9 +11,9 @@ use App\Exceptions\NotOwnerException;
 class CheckUserIdListener
 {
 
-    public function handle(CreatingModelCourseUserEvent $event): void
+    public function handle($event): void
     {
-        if ($event->cu->getAttribute("user_id") != Session::getUserServiceToken()->getUid()) {
+        if ($event->model->getAttribute("user_id") != Session::getUserServiceToken()->getUid()) {
             throw new NotOwnerException();
         }
     }

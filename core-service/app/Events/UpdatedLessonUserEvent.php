@@ -7,9 +7,10 @@ use Egal\Core\Events\Event;
 
 class UpdatedLessonUserEvent extends Event
 {
-    public $lu;
+    public $model;
+
     public function __construct(LessonUser $lu)
     {
-        $this->lu = $lu;
+        $this->model = $lu;
     }
 }
