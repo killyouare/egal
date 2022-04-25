@@ -7,6 +7,7 @@ namespace App\Providers;
 use Egal\Core\Events\UserServiceTokenDetectedEvent;
 use Egal\Core\Events\EventServiceProvider as ServiceProvider;
 use App\Events\SaveModelUserEvent;
+use App\Events\SendMessageEvent;
 use App\Listeners\AdditionUserServiceTokenListener;
 use App\Listeners\SendMessageListener;
 use App\Listeners\ValidateListener;
@@ -25,9 +26,6 @@ class EventServiceProvider extends ServiceProvider
             SendMessageListener::class,
             ClearAttrListener::class,
         ],
-        UserServiceTokenDetectedEvent::class => [
-            AdditionUserServiceTokenListener::class
-        ]
 
     ];
 }

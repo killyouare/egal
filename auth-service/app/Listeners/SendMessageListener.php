@@ -10,9 +10,9 @@ class SendMessageListener
 {
 
 
-    public function handle(SaveModelUserEvent $event): void
+    public function handle($event): void
     {
-        $attributes = $event->user->getAttributes();
+        $attributes = $event->arguments;
 
         $request = new \Egal\Core\Communication\Request(
             'core', // Сервис назначения запроса

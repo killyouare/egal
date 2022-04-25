@@ -2,24 +2,25 @@
 
 namespace Database\Seeders;
 
+use App\Events\SendMessageEvent;
 use App\Models\Role;
 use App\Models\User;
+use Faker\Generator;
+use Illuminate\Container\Container;
 use Illuminate\Database\Seeder;
 
 class UsersDebugSeeder extends Seeder
 {
+    protected $faker;
+
+    public function __construct()
+    {
+        $this->faker = Container::getInstance()->make(Generator::class);
+    }
+
 
     public function run()
     {
-        Role::factory([
-            'name' => 'admin',
-            'is_default' => false,
-        ])->create();
-        User::factory([
-            "email" => "admin@admin.com",
-            "password" => "QWEasd123"
-        ])->create();
-
 
         /** @var Role $role */
         $role = Role::factory()->create();

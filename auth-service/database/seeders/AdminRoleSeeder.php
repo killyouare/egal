@@ -3,10 +3,20 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\User;
+use Faker\Generator;
+use Illuminate\Container\Container;
 use Illuminate\Database\Seeder;
 
 class AdminRoleSeeder extends Seeder
 {
+
+    protected $faker;
+
+    public function __construct()
+    {
+        $this->faker = Container::getInstance()->make(Generator::class);
+    }
 
     /**
      * Run the database seeds.
@@ -24,6 +34,12 @@ class AdminRoleSeeder extends Seeder
         if (!Role::query()->find($adminId)) {
             Role::query()->create($adminRoleAttributes);
         }
+        if (!User::query()->where('email', 'admin@admin.com')->first()) {
+            $user = User::factory([
+                "email" => "admin@admin.com",
+                "password" => "QWEasd123"
+            ])->create();
+            $user->roles()->attach($adminId);
+        }
     }
-
 }

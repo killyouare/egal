@@ -28,6 +28,7 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @property $first_name                {@property-type fake-field} 
  * @property $created_at                {@property-type field}
  * @property $updated_at                {@property-type field}
+ * 
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *

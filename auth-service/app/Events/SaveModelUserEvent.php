@@ -11,9 +11,10 @@ class SaveModelUserEvent extends Event
     use SerializesModels;
 
     public $user;
-
+    public $arguments;
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->arguments = $user->getAttributes();
     }
 }
