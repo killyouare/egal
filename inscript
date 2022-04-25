@@ -1,9 +1,11 @@
 #!/bin/bash
 cp .env.example .env
 cd ./auth-service
-composer u --ignore-platform-reqs
+docker run --rm --interactive --tty --volume $PWD:/app --user $(id -u):$(id -g) composer install --ignore-platform-reqs
 cd ../core-service
-composer u --ignore-platform-reqs
+docker run --rm --interactive --tty --volume $PWD:/app --user $(id -u):$(id -g) composer install --ignore-platform-reqs
 cd ../
 sudo ss -lptn 'sport = :5432' -K
+sudo ss -lptn 'sport = :80' -K
+sleep 5
 sudo docker-compose up -d --build
