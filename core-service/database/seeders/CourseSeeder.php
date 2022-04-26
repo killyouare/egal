@@ -15,7 +15,7 @@ class CourseSeeder extends Seeder
    */
   public function run()
   {
-    Course::factory(53)->create([
+    Course::factory(7)->create([
       "start_date" => "2050-01-01",
       'end_date' => '2050-03-05'
     ]);
