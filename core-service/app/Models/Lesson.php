@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * 
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access admin}
- * @action getItems {@roles-access user}
+ * @action getItems {@roles-access user|admin}
  * @action create {@roles-access admin}
  * @action update {@roles-access admin}
  * @action delete {@roles-access admin}
@@ -29,4 +29,9 @@ class Lesson extends EgalModel
   protected $fillable = [
     'course_id', 'theme',
   ];
+
+  public function coruse()
+  {
+    return $this->belongsTo(Course::class);
+  }
 }

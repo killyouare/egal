@@ -7,6 +7,7 @@ use App\Models\User;
 use Faker\Generator;
 use Illuminate\Container\Container;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AdminRoleSeeder extends Seeder
 {
@@ -37,7 +38,7 @@ class AdminRoleSeeder extends Seeder
         if (!User::query()->where('email', 'admin@admin.com')->first()) {
             $user = User::factory([
                 "email" => "admin@admin.com",
-                "password" => "QWEasd123"
+                "password" => Hash::make("QWEasd123"),
             ])->create();
             $user->roles()->attach($adminId);
         }

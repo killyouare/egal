@@ -17,7 +17,7 @@ use Egal\Model\Model as EgalModel;
  * @property $created_at {@property-type field}
  * @property $updated_at {@property-type field}
  *
- * @action getItems {@statuses-access logged}
+ * @action getItems {@roles-access user|admin}
  * @action update {@roles-access user}
  */
 class LessonUser extends EgalModel

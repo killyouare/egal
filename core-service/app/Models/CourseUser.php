@@ -15,7 +15,7 @@ use App\Events\CreatedModelCourseUserEvent;
  * @property $updated_at {@property-type field}
  *
  * @action create {@roles-access user}
- * @action getItems {@statuses-access logged|guest}
+ * @action getItems {@roles-access user|admin}
  * 
  */
 class CourseUser extends EgalModel
