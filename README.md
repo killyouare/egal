@@ -1,4 +1,4 @@
-# Lumen test task
+# Egal test task
 
 ## Установка
 
