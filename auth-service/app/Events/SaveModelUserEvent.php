@@ -10,8 +10,10 @@ class SaveModelUserEvent extends Event
 {
     use SerializesModels;
 
+    // Добавить типизацию
     public $user;
     public $arguments;
+    // Отступ
     public function __construct(User $user)
     {
         $this->user = $user;

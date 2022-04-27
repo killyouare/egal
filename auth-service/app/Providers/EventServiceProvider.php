@@ -15,7 +15,7 @@ use App\Listeners\ClearAttrListener;
 
 class EventServiceProvider extends ServiceProvider
 {
-
+    // Лишний отступ
 
     /**
      * Определение обработчиков локальных событий
@@ -26,6 +26,6 @@ class EventServiceProvider extends ServiceProvider
             SendMessageListener::class,
             ClearAttrListener::class,
         ],
-
+        // Лишний отступ
     ];
 }

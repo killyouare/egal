@@ -13,6 +13,7 @@ class CourseFactory extends Factory
 
     public function definition()
     {
+        // Лишние комментарии
         return [
             'title' => $this->faker->word(),
             'student_capacity' => $this->faker->randomDigit() + 1,

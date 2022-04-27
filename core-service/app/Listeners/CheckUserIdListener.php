@@ -13,6 +13,7 @@ class CheckUserIdListener
 
     public function handle($event): void
     {
+        // Строгое сравнение
         if ($event->model->getAttribute("user_id") != Session::getUserServiceToken()->getUid()) {
             throw new NotOwnerException();
         }

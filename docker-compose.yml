@@ -1,5 +1,11 @@
 version: "3.6"
 
+# Чтобы не писать везде file: ./deploy/docker-compose.yml
+# можно добавить в .env файл переменную COMPOSE_FILE=deploy/docker-compose.yml:docker-compose.yml и docker-compose файлы
+# автоматически объединятся
+
+# Лучше чтобы названия сервисов в родительском файле совпадали с названиями в дочернем файле и директива extend будет ненужна
+
 services:
   web:
     extends:

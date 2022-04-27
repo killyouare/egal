@@ -20,7 +20,7 @@ use App\Listeners\ValidationUserCourseListener;
 class EventServiceProvider extends ServiceProvider
 {
 
-
+    // Лишний отступ
     protected $listen = [
         CreatingModelCourseUserEvent::class => [
             UniqueListener::class,

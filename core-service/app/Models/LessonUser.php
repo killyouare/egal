@@ -8,9 +8,9 @@ use Egal\Model\Exceptions\ObjectNotFoundException;
 use Egal\Model\Exceptions\UpdateException;
 use Egal\Model\Model as EgalModel;
 
-
+// Лишний отступ
 /**
- * @property $id {@property-type field} {@prymary-key} 
+ * @property $id {@property-type field} {@prymary-key}
  * @property $user_id {@property-type field}
  * @property $lesson_id {@property-type field}
  * @property $is_passed {@property-type field}
@@ -20,6 +20,7 @@ use Egal\Model\Model as EgalModel;
  * @action getItems {@roles-access user|admin}
  * @action update {@roles-access user}
  */
+// Отформатировать код
 class LessonUser extends EgalModel
 {
   protected $fillable = [
@@ -31,6 +32,8 @@ class LessonUser extends EgalModel
     "updated" => UpdatedLessonUserEvent::class
   ];
 
+  // Не переопределяем endpoint !!
+    // все поведение через event
   public static function actionUpdate($id = null, array $attributes = []): array
   {
 

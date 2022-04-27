@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class SendMessageListener
 {
 
-
+    // Лишний отступ
     public function handle($event): void
     {
         $attributes = $event->arguments;
@@ -30,9 +30,10 @@ class SendMessageListener
         $request->call();
 
         $response = $request->getResponse();
+        // Можно заменить на тернарный оператор
         if ($response->getStatusCode() != 200) {
             $actionErrorMessage = $response->getActionErrorMessage(); // Получение сообщения ошибки
-
+            // Лишний отступ
         } else {
             $actionResultMessage = $response->getActionResultMessage(); // Получение сообщения результата выполнения [действия](/_glossary?id=действия) }
         }

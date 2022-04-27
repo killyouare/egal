@@ -22,13 +22,13 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 /**
  * @property $id                        {@property-type field}  {@primary-key}
  * @property $email                     {@property-type field}  {@validation-rules required|string|email|unique:users,email}
- * @property $password                  {@property-type field}  
- * @property $last_name                 {@property-type fake-field} 
- * @property $phone                     {@property-type fake-field} 
- * @property $first_name                {@property-type fake-field} 
+ * @property $password                  {@property-type field}
+ * @property $last_name                 {@property-type fake-field}
+ * @property $phone                     {@property-type fake-field}
+ * @property $first_name                {@property-type fake-field}
  * @property $created_at                {@property-type field}
  * @property $updated_at                {@property-type field}
- * 
+ *
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *
@@ -37,7 +37,7 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @action loginToService               {@statuses-access guest}
  * @action refreshUserMasterToken       {@statuses-access guest}
  * @action getItems                     {@roles-access admin}
- * 
+ *     // Лишний отступ
  */
 class User extends BaseUser
 {
@@ -46,7 +46,7 @@ class User extends BaseUser
 
     public $incrementing = false;
 
-
+    // Лишний отступ
     protected $hidden = [
         'password',
     ];
@@ -77,6 +77,7 @@ class User extends BaseUser
         if (!$hashedPassword) {
             throw new PasswordHashException();
         }
+        // Генерить id лучше в listener
         $user->setAttribute($user->getKeyName(), (string)Str::uuid());
         $user->setAttribute('email', $attributes['email']);
         $user->setAttribute('password', $hashedPassword);

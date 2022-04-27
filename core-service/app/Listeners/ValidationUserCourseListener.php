@@ -13,6 +13,7 @@ class ValidationUserCourseListener
     public function handle(UpdatingLessonUserEvent $event): void
     {
         $attributes = $event->model->getAttributes();
+        // validator в helper
         $validator = Validator::make($attributes, [
             "lesson_id" => [new CourseDriedRule],
         ]);

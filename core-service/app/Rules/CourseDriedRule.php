@@ -19,6 +19,7 @@ class CourseDriedRule extends EgalRule
 
     public function message(): string
     {
+        // Убрать TODO
         return parent::message("Course dried up"); // TODO
     }
 }

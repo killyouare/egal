@@ -16,6 +16,7 @@ class UniqueListener
     {
         $attributes = $event->model->getAttributes();
         $course_id = $attributes['course_id'];
+        // Validator в Helper
         $validator = Validator::make($attributes, [
             "user_id" => "unique:course_users,user_id,null,null,course_id,$course_id",
         ]);
