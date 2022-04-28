@@ -12,11 +12,11 @@ class UpdateCourseListener
 
     public function handle(CreatedModelCourseUserEvent $event): void
     {
-        $courseId = $event->model->getAttribute('course_id');
-        $course = Course::actionGetItem($courseId);
+        $courseId = $event->getAttr('course_id');
+        $course = Course::findItem($courseId);
 
-        Course::actionUpdate($courseId, [
-            "student_capacity" => $course['student_capacity'] - 1
+        $course->update([
+            "student_capacity" => $course->student_capacity - 1
         ]);
     }
 }

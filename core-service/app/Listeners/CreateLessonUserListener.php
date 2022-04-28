@@ -14,20 +14,15 @@ class CreateLessonUserListener
 
     public function handle(CreatedModelCourseUserEvent $event): void
     {
-        $attributes = $event->model->getAttributes();
-        // Лучше через query builder ибо получение списка через endpoint отличается от получения записей напрямую
-        // Например fire action.events
-        $lessons = Lesson::actionGetItems(null, [], [
-            ["course_id", "eq", $attributes['course_id']]
-        ], []);
-        foreach ($lessons['items'] as $lesson) {
-            // CamelCase
-            $lessonuser = LessonUser::actionCreate([
+        $attributes = $event->getAttrs();
+
+        $lessons = Lesson::getItemsByCourseId($attributes['course_id'])->get()->toArray();
+
+        foreach ($lessons as $lesson) {
+            LessonUser::createItem([
                 'user_id' => $attributes['user_id'],
                 'lesson_id' => $lesson['id'],
             ]);
-            // Убрать
-            var_dump($lessonuser);
         }
     }
 }

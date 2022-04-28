@@ -3,10 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use Illuminate\Database\Seeder;
 
-// Лишний отступ
-// Форматирование кода
 class CourseSeeder extends Seeder
 {
   /**
@@ -16,10 +15,7 @@ class CourseSeeder extends Seeder
    */
   public function run()
   {
-      // start/end Генерировать через faker
-    Course::factory(7)->create([
-      "start_date" => "2050-01-01",
-      'end_date' => '2050-03-05'
-    ]);
+
+    Course::factory(7)->has(Lesson::factory(rand(1, 10)))->create();
   }
 }

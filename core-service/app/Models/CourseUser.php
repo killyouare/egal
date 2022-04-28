@@ -26,6 +26,7 @@ class CourseUser extends EgalModel
     "course_id",
     "percentage_passing"
   ];
+
   protected $guarder = [
     "id"
   ];
@@ -34,4 +35,10 @@ class CourseUser extends EgalModel
     'creating' => CreatingModelCourseUserEvent::class,
     'created' => CreatedModelCourseUserEvent::class,
   ];
+
+  public static function findByFields(array $fields)
+  {
+    $courseUser = new static();
+    return $courseUser->where($fields);
+  }
 }

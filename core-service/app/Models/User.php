@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class User extends EgalModel
 {
-  use HasFactory;
+    use HasFactory;
 
-  public $incrementing = false;
+    public $incrementing = false;
 
-  protected $fillable = [
-    'last_name',
-    'id',
-    'first_name',
-    'phone'
-  ];
+    protected $fillable = [
+        'last_name',
+        'id',
+        'first_name',
+        'phone'
+    ];
 }
