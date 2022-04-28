@@ -16,8 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string('title', 256);
-            // UnsignedInteger или добавить constrain на >= 0
-            $table->integer('student_capacity');
+            $table->UnsignedInteger('student_capacity');
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('has_certificate');

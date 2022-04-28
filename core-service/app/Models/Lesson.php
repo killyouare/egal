@@ -5,7 +5,6 @@ namespace App\Models;
 use Egal\Model\Model as EgalModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use PhpParser\ErrorHandler\Collecting;
 
 /**
  * @property $id {@property-type field} {@prymary-key}

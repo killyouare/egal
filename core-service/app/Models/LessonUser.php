@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Events\UpdatedLessonUserEvent;
 use App\Events\UpdatingLessonUserEvent;
-use Egal\Model\Exceptions\ObjectNotFoundException;
-use Egal\Model\Exceptions\UpdateException;
 use Egal\Model\Model as EgalModel;
 
 /**
