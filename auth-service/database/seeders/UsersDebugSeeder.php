@@ -18,10 +18,8 @@ class UsersDebugSeeder extends Seeder
         $this->faker = Container::getInstance()->make(Generator::class);
     }
 
-    // Лишний отступ
     public function run()
     {
-        // Лишний отступ
         /** @var Role $role */
         $role = Role::factory()->create();
 

@@ -3,14 +3,11 @@
 namespace App\Helpers;
 
 use Egal\Core\Events\Event as EgalEvent;
-use Egal\Model\Model;
 
 abstract class Event extends EgalEvent
 {
 
-    protected Model $model;
-
-    public function getModel(): Model
+    public function getModel()
     {
         return $this->model;
     }
@@ -18,11 +15,6 @@ abstract class Event extends EgalEvent
     public function getAttrs(): array
     {
         return $this->model->getAttributes();
-    }
-
-    public function getAttr(string $value): mixed
-    {
-        return $this->model->getAttribute($value);
     }
 
     public function setModelAttr(string $name, mixed $value): void

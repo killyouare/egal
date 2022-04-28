@@ -4,11 +4,6 @@ namespace App\Listeners;
 
 use App\Events\CreatingModelCourseUserEvent;
 use App\Helpers\MicroserviceValidator;
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
-use Egal\Model\Exceptions\ValidateException;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class UniqueListener
 {

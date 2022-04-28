@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Permission extends Model
 {
-
     use HasFactory;
 
     protected $keyType = 'string';
@@ -52,5 +51,4 @@ class Permission extends Model
             }
         });
     }
-
 }

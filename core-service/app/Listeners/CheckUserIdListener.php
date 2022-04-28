@@ -10,7 +10,9 @@ class CheckUserIdListener
 {
     public function handle(Event $event): void
     {
-        if ($event->getAttr("user_id") !== Session::getUserServiceToken()->getUid()) {
+        $user_id = $event->getAttr("user_id");
+
+        if ($user_id !== Session::getUserServiceToken()->getUid()) {
             throw new NotOwnerException();
         }
     }

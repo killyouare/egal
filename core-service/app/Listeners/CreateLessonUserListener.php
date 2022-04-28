@@ -2,10 +2,7 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
 use App\Events\CreatedModelCourseUserEvent;
-use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\LessonUser;
 

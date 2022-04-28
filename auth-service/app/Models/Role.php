@@ -23,7 +23,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class Role extends Model
 {
-
     use HasFactory;
 
     protected $keyType = 'string';
@@ -67,5 +66,4 @@ class Role extends Model
     {
         return $this->belongsToMany(Permission::class, 'role_permissions');
     }
-
 }

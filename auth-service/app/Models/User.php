@@ -7,15 +7,11 @@ use App\Exceptions\PasswordHashException;
 use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
 use Egal\Auth\Tokens\UserMasterToken;
-use Egal\Auth\Tokens\UserServiceToken;
 use Egal\AuthServiceDependencies\Exceptions\LoginException;
-use Egal\AuthServiceDependencies\Exceptions\UserNotIdentifiedException;
 use Egal\AuthServiceDependencies\Models\User as BaseUser;
-use Egal\Model\Traits\UsesUuidKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
@@ -37,7 +33,6 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @action loginToService               {@statuses-access guest}
  * @action refreshUserMasterToken       {@statuses-access guest}
  * @action getItems                     {@roles-access admin}
- *     // Лишний отступ
  */
 class User extends BaseUser
 {
@@ -45,8 +40,6 @@ class User extends BaseUser
     use HasRelationships;
 
     public $incrementing = false;
-
-    // Лишний отступ
     protected $hidden = [
         'password',
     ];
@@ -60,7 +53,6 @@ class User extends BaseUser
         'created_at',
         'updated_at',
     ];
-
     protected $dispatchesEvents = [
         'creating' => SaveModelUserEvent::class,
     ];
@@ -77,13 +69,9 @@ class User extends BaseUser
         if (!$hashedPassword) {
             throw new PasswordHashException();
         }
-        // Генерить id лучше в listener
-        $user->setAttribute($user->getKeyName(), (string)Str::uuid());
         $user->setAttribute('email', $attributes['email']);
         $user->setAttribute('password', $hashedPassword);
-        $user->setAttribute('last_name', $attributes['last_name']);
-        $user->setAttribute('first_name', $attributes['first_name']);
-        $user->setAttribute('phone', $attributes['phone']);
+        $user->fill($attributes);
         $user->save();
 
         return $user;

@@ -2,21 +2,14 @@
 
 namespace App\Events;
 
-use Egal\Core\Events\Event;
+use App\Helpers\Event;
 use App\Models\User;
-use Illuminate\Queue\SerializesModels;
 
 class SaveModelUserEvent extends Event
 {
-    use SerializesModels;
 
-    // Добавить типизацию
-    public $user;
-    public $arguments;
-    // Отступ
-    public function __construct(User $user)
+    public function __construct(User $model)
     {
-        $this->user = $user;
-        $this->arguments = $user->getAttributes();
+        $this->model = $model;
     }
 }
