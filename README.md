@@ -1,3 +1,5 @@
+- @action test {@statuses-access guest}
+
 # Egal test task
 
 ## Установка
@@ -29,7 +31,6 @@ http://localhost:80/core/
 Тестирование в postman:
 
 - [Все запросы](https://www.postman.com/martian-moon-565933/workspace/egal)
-
 
 ## Примечания
 

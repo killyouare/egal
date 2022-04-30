@@ -16,7 +16,7 @@ class CourseFactory extends Factory
             'title' => $this->faker->word(),
             'student_capacity' => $this->faker->randomDigit() + 1,
             'start_date' => $this->faker->dateTimeInInterval('+1 days', '+3 days')->format('Y-m-d'),
-            'end_date' => $this->faker->dateTimeInInterval("+4 days", '+2 days')->format("Y-m-d"),
+            'end_date' => $this->faker->dateTimeInInterval("+5 days", '+2 days')->format("Y-m-d"),
             'has_certificate' => $this->faker->boolean()
         ];
     }

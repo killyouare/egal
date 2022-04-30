@@ -2,16 +2,16 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\EventListener;
-use App\Events\SaveModelUserEvent;
+use App\Events\AbstractEvent;
 use App\Rules\PhoneNumberRule;
 use App\Helpers\MicroserviceValidator;
 
-class ValidateListener
+class ValidateListener extends AbstractListener
 {
 
-    public function handle(SaveModelUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
 
         $attributes = $event->getAttrs();
 

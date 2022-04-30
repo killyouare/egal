@@ -2,15 +2,16 @@
 
 namespace App\Listeners;
 
-use App\Events\SaveModelUserEvent;
+use App\Events\AbstractEvent;
 use Egal\Core\Communication\Request;
 use Exception;
 
-class SendMessageListener
+class SendMessageListener extends AbstractListener
 {
 
-    public function handle(SaveModelUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
         $attributes = $event->getAttrs();
 
         $request = new Request(

@@ -2,14 +2,13 @@
 
 namespace App\Events;
 
-use App\Helpers\Event;
 use App\Models\User;
 
-class SaveModelUserEvent extends Event
+class SaveModelUserEvent extends AbstractEvent
 {
 
     public function __construct(User $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 }

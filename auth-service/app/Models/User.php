@@ -12,6 +12,7 @@ use Egal\AuthServiceDependencies\Models\User as BaseUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Config;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
@@ -76,6 +77,7 @@ class User extends BaseUser
 
         return $user;
     }
+
 
     public static function actionLogin(string $email, string $password): array
     {

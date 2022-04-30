@@ -2,14 +2,15 @@
 
 namespace App\Listeners;
 
-use App\Events\SaveModelUserEvent;
+use App\Events\AbstractEvent;
 use Illuminate\Support\Str;
 
-class SetUUIDListener
+class SetUUIDListener extends AbstractListener
 {
 
-    public function handle(SaveModelUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
         $uid = Str::uuid();
 
         $event->setModelAttr("id", $uid);
