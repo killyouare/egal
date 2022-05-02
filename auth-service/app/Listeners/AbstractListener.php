@@ -10,7 +10,7 @@ abstract class AbstractListener
     public  function handle(AbstractEvent $event): void
     {
         Log::info("Listener ["
-            . __CLASS__
+            . get_class($this)
             . "] event ["
             . get_class($event)
             . "].");

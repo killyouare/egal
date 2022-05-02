@@ -14,7 +14,7 @@ abstract class AbstractEvent extends EgalEvent
     public function __construct(Model $model)
     {
         Log::info(
-            'Event [' . __CLASS__
+            'Event [' . get_class($this)
                 . '] was fired with model: ['
                 . get_class($model)
                 . ']. (Changes: ' . $model->wasChanged()

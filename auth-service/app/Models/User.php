@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Exceptions\EmptyPasswordException;
-use App\Exceptions\PasswordHashException;
 use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
 use Egal\Auth\Tokens\UserMasterToken;
@@ -12,9 +11,10 @@ use Egal\AuthServiceDependencies\Models\User as BaseUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Config;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 
 /**
  * @property $id                        {@property-type field}  {@primary-key}
@@ -41,19 +41,25 @@ class User extends BaseUser
     use HasRelationships;
 
     public $incrementing = false;
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
+        'login_time' => 'array',
+    ];
+
     protected $hidden = [
         'password',
     ];
+
     protected $fillable = [
         'id',
         'last_name',
         'first_name',
-        'phone'
+        'phone',
+        "login_time"
     ];
-    protected $guarder = [
-        'created_at',
-        'updated_at',
-    ];
+
     protected $dispatchesEvents = [
         'creating' => SaveModelUserEvent::class,
     ];
@@ -65,14 +71,11 @@ class User extends BaseUser
         }
 
         $user = new static();
-        $hashedPassword = password_hash($attributes['password'], PASSWORD_BCRYPT);
 
-        if (!$hashedPassword) {
-            throw new PasswordHashException();
-        }
         $user->setAttribute('email', $attributes['email']);
-        $user->setAttribute('password', $hashedPassword);
+        $user->setAttribute('password', $attributes['password']);
         $user->fill($attributes);
+
         $user->save();
 
         return $user;
@@ -97,6 +100,14 @@ class User extends BaseUser
         $umrt = new UserMasterRefreshToken();
         $umrt->setSigningKey(config('app.service_key'));
         $umrt->setAuthIdentification($user->getAuthIdentifier());
+
+        $userLoginTime = $user->getAttribute('login_time');
+
+        $userLoginTime ?
+            $userLoginTime[] = Carbon::now() :
+            $userLoginTime = [Carbon::now()];
+
+        $user->update(['login_time' => $userLoginTime]);
 
         return [
             'user_master_token' => $umt->generateJWT(),
@@ -129,6 +140,13 @@ class User extends BaseUser
             $user->roles()
                 ->attach($defaultRoles->pluck('id'));
         });
+    }
+
+    protected function password(): Attribute
+    {
+        return Attribute::set(
+            fn ($value) => password_hash($value, PASSWORD_BCRYPT),
+        );
     }
 
     protected function getRoles(): array
