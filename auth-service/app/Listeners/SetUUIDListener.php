@@ -11,6 +11,7 @@ class SetUUIDListener extends AbstractListener
     public function handle(AbstractEvent $event): void
     {
         parent::handle($event);
+
         $uid = Str::uuid();
 
         $event->setModelAttr("id", $uid);

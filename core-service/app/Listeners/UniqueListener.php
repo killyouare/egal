@@ -2,14 +2,16 @@
 
 namespace App\Listeners;
 
-use App\Events\CreatingModelCourseUserEvent;
+use App\Events\AbstractEvent;
 use App\Helpers\MicroserviceValidator;
 
-class UniqueListener
+class UniqueListener extends AbstractListener
 {
 
-    public function handle(CreatingModelCourseUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
+
         $attributes = $event->getAttrs();
         $course_id = $attributes['course_id'];
 

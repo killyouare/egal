@@ -2,14 +2,13 @@
 
 namespace App\Events;
 
-use App\Helpers\Event;
-use App\Models\CourseUser;
+use Egal\Model\Model;
 
-class CreatedModelCourseUserEvent extends Event
+class CreatedModelCourseUserEvent extends AbstractEvent
 {
 
-    public function __construct(CourseUser $model)
+    public function __construct(Model $model)
     {
-        $this->model = $model;
+        parent::__construct($model);
     }
 }

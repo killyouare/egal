@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\UpdatingLessonUserEvent;
+use App\Events\AbstractEvent;
 use App\Exceptions\IdFieldException;
 use App\Exceptions\LessonIdFieldException;
 use App\Exceptions\UserIdFieldException;
@@ -10,11 +10,13 @@ use App\Helpers\MicroserviceValidator;
 use App\Rules\CourseDriedRule;
 use Egal\Core\Session\Session;
 
-class ValidationUserCourseListener
+class ValidationUserCourseListener extends AbstractListener
 {
 
-    public function handle(UpdatingLessonUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
+
         $requestAttrs = Session::getActionMessage()->getParameters()['attributes'];
         $attributes = $event->getAttrs();
 

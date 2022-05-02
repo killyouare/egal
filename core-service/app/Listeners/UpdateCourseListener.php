@@ -2,14 +2,16 @@
 
 namespace App\Listeners;
 
-use App\Events\CreatedModelCourseUserEvent;
+use App\Events\AbstractEvent;
 use App\Models\Course;
 
-class UpdateCourseListener
+class UpdateCourseListener extends AbstractListener
 {
 
-    public function handle(CreatedModelCourseUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
+
         $courseId = $event->getAttr('course_id');
         $course = Course::findItem($courseId);
 

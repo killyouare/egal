@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\LoginUserEvent;
 use App\Exceptions\EmptyPasswordException;
 use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
@@ -18,7 +19,7 @@ use Carbon\Carbon;
 
 /**
  * @property $id                        {@property-type field}  {@primary-key}
- * @property $email                     {@property-type field}  {@validation-rules required|string|email|unique:users,email}
+ * @property $email                     {@property-type field}
  * @property $password                  {@property-type field}
  * @property $last_name                 {@property-type fake-field}
  * @property $phone                     {@property-type fake-field}
@@ -54,9 +55,11 @@ class User extends BaseUser
 
     protected $fillable = [
         'id',
+        "email",
         'last_name',
         'first_name',
         'phone',
+        "password",
         "login_time"
     ];
 
@@ -64,18 +67,11 @@ class User extends BaseUser
         'creating' => SaveModelUserEvent::class,
     ];
 
-    public static function actionRegister(array $attributes = []): User
+    public static function actionRegister($attributes = []): User
     {
-        if (!$attributes['password']) {
-            throw new EmptyPasswordException();
-        }
-
         $user = new static();
 
-        $user->setAttribute('email', $attributes['email']);
-        $user->setAttribute('password', $attributes['password']);
         $user->fill($attributes);
-
         $user->save();
 
         return $user;
@@ -84,7 +80,6 @@ class User extends BaseUser
 
     public static function actionLogin(string $email, string $password): array
     {
-        /** @var BaseUser $user */
         $user = self::query()
             ->where('email', '=', $email)
             ->first();
@@ -93,6 +88,8 @@ class User extends BaseUser
             throw new LoginException('Incorrect Email or password!');
         }
 
+        event(new LoginUserEvent($user));
+
         $umt = new UserMasterToken();
         $umt->setSigningKey(config('app.service_key'));
         $umt->setAuthIdentification($user->getAuthIdentifier());
@@ -100,14 +97,6 @@ class User extends BaseUser
         $umrt = new UserMasterRefreshToken();
         $umrt->setSigningKey(config('app.service_key'));
         $umrt->setAuthIdentification($user->getAuthIdentifier());
-
-        $userLoginTime = $user->getAttribute('login_time');
-
-        $userLoginTime ?
-            $userLoginTime[] = Carbon::now() :
-            $userLoginTime = [Carbon::now()];
-
-        $user->update(['login_time' => $userLoginTime]);
 
         return [
             'user_master_token' => $umt->generateJWT(),

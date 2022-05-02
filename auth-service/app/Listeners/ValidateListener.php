@@ -16,10 +16,12 @@ class ValidateListener extends AbstractListener
         $attributes = $event->getAttrs();
 
         MicroserviceValidator::validate($attributes, [
-            "id" =>  'required',
-            "first_name" =>  'required|string',
-            "last_name" =>  'required|string',
-            "phone" => [new PhoneNumberRule, 'required'],
+            "id" =>  "required",
+            "password" => "required|string",
+            "email" => "required|email|unique:users",
+            "first_name" => "required|string",
+            "last_name" => "required|string",
+            "phone" => [new PhoneNumberRule, "required"],
         ]);
     }
 }
