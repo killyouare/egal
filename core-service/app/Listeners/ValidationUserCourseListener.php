@@ -23,7 +23,7 @@ class ValidationUserCourseListener extends AbstractListener
         $attributes = $event->getAttributes();
 
         MicroserviceValidator::validate($attributes, [
-            "lesson_id" => "curse_dried",
+            "lesson_id" => "course_dried",
         ]);
     }
 }
