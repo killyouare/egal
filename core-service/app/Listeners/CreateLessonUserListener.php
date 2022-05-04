@@ -2,28 +2,26 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
-use App\Events\CreatedModelCourseUserEvent;
-use App\Models\Course;
+use App\Events\AbstractEvent;
 use App\Models\Lesson;
 use App\Models\LessonUser;
 
-class CreateLessonUserListener
+class CreateLessonUserListener extends AbstractListener
 {
 
-    public function handle(CreatedModelCourseUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
-        $attributes = $event->model->getAttributes();
-        $lessons = Lesson::actionGetItems(null, [], [
-            ["course_id", "eq", $attributes['course_id']]
-        ], []);
-        foreach ($lessons['items'] as $lesson) {
-            $lessonuser = LessonUser::actionCreate([
+        parent::handle($event);
+
+        $attributes = $event->getAttrs();
+
+        $lessons = Lesson::getItemsByCourseId($attributes['course_id'])->get()->toArray();
+
+        foreach ($lessons as $lesson) {
+            LessonUser::createItem([
                 'user_id' => $attributes['user_id'],
                 'lesson_id' => $lesson['id'],
             ]);
-            var_dump($lessonuser);
         }
     }
 }

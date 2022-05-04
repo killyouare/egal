@@ -38,7 +38,7 @@ class AdminRoleSeeder extends Seeder
         if (!User::query()->where('email', 'admin@admin.com')->first()) {
             $user = User::factory([
                 "email" => "admin@admin.com",
-                "password" => Hash::make("QWEasd123"),
+                "password" => "QWEasd123",
             ])->create();
             $user->roles()->attach($adminId);
         }

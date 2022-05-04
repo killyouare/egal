@@ -2,33 +2,31 @@
 
 namespace App\Models;
 
+use App\Events\LoginUserEvent;
 use App\Exceptions\EmptyPasswordException;
-use App\Exceptions\PasswordHashException;
 use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
 use Egal\Auth\Tokens\UserMasterToken;
-use Egal\Auth\Tokens\UserServiceToken;
 use Egal\AuthServiceDependencies\Exceptions\LoginException;
-use Egal\AuthServiceDependencies\Exceptions\UserNotIdentifiedException;
 use Egal\AuthServiceDependencies\Models\User as BaseUser;
-use Egal\Model\Traits\UsesUuidKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 
 /**
  * @property $id                        {@property-type field}  {@primary-key}
- * @property $email                     {@property-type field}  {@validation-rules required|string|email|unique:users,email}
- * @property $password                  {@property-type field}  
- * @property $last_name                 {@property-type fake-field} 
- * @property $phone                     {@property-type fake-field} 
- * @property $first_name                {@property-type fake-field} 
+ * @property $email                     {@property-type field}
+ * @property $password                  {@property-type field}
+ * @property $last_name                 {@property-type fake-field}
+ * @property $phone                     {@property-type fake-field}
+ * @property $first_name                {@property-type fake-field}
  * @property $created_at                {@property-type field}
  * @property $updated_at                {@property-type field}
- * 
+ *
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *
@@ -37,7 +35,6 @@ use Staudenmeir\EloquentHasManyDeep\HasRelationships;
  * @action loginToService               {@statuses-access guest}
  * @action refreshUserMasterToken       {@statuses-access guest}
  * @action getItems                     {@roles-access admin}
- * 
  */
 class User extends BaseUser
 {
@@ -46,51 +43,43 @@ class User extends BaseUser
 
     public $incrementing = false;
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
+        'login_time' => 'array',
+    ];
 
     protected $hidden = [
         'password',
     ];
+
     protected $fillable = [
         'id',
+        "email",
         'last_name',
         'first_name',
-        'phone'
-    ];
-    protected $guarder = [
-        'created_at',
-        'updated_at',
+        'phone',
+        "password",
+        "login_time"
     ];
 
     protected $dispatchesEvents = [
         'creating' => SaveModelUserEvent::class,
     ];
 
-    public static function actionRegister(array $attributes = []): User
+    public static function actionRegister($attributes = []): User
     {
-        if (!$attributes['password']) {
-            throw new EmptyPasswordException();
-        }
-
         $user = new static();
-        $hashedPassword = password_hash($attributes['password'], PASSWORD_BCRYPT);
 
-        if (!$hashedPassword) {
-            throw new PasswordHashException();
-        }
-        $user->setAttribute($user->getKeyName(), (string)Str::uuid());
-        $user->setAttribute('email', $attributes['email']);
-        $user->setAttribute('password', $hashedPassword);
-        $user->setAttribute('last_name', $attributes['last_name']);
-        $user->setAttribute('first_name', $attributes['first_name']);
-        $user->setAttribute('phone', $attributes['phone']);
+        $user->fill($attributes);
         $user->save();
 
         return $user;
     }
 
+
     public static function actionLogin(string $email, string $password): array
     {
-        /** @var BaseUser $user */
         $user = self::query()
             ->where('email', '=', $email)
             ->first();
@@ -98,6 +87,8 @@ class User extends BaseUser
         if (!$user || !password_verify($password, $user->getAttribute('password'))) {
             throw new LoginException('Incorrect Email or password!');
         }
+
+        event(new LoginUserEvent($user));
 
         $umt = new UserMasterToken();
         $umt->setSigningKey(config('app.service_key'));
@@ -138,6 +129,13 @@ class User extends BaseUser
             $user->roles()
                 ->attach($defaultRoles->pluck('id'));
         });
+    }
+
+    protected function password(): Attribute
+    {
+        return Attribute::set(
+            fn ($value) => password_hash($value, PASSWORD_BCRYPT),
+        );
     }
 
     protected function getRoles(): array

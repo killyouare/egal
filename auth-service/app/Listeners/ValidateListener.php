@@ -2,33 +2,26 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\EventListener;
-use App\Events\SaveModelUserEvent;
+use App\Events\AbstractEvent;
 use App\Rules\PhoneNumberRule;
-use Illuminate\Support\Facades\Validator;
-use Egal\Model\Exceptions\ValidateException;
+use App\Helpers\MicroserviceValidator;
 
-class ValidateListener
+class ValidateListener extends AbstractListener
 {
 
-
-    public function handle(SaveModelUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
+        parent::handle($event);
 
+        $attributes = $event->getAttrs();
 
-        $attributes = $event->user->getAttributes();
-        $validator = Validator::make($attributes, [
-            "id" =>  'required',
-            "first_name" =>  'required|string',
-            "last_name" =>  'required|string',
-            "phone" => [new PhoneNumberRule, 'required'],
+        MicroserviceValidator::validate($attributes, [
+            "id" =>  "required",
+            "password" => "required|string",
+            "email" => "required|email|unique:users",
+            "first_name" => "required|string",
+            "last_name" => "required|string",
+            "phone" => [new PhoneNumberRule, "required"],
         ]);
-
-        if ($validator->fails()) {
-            $exception = new ValidateException();
-            $exception->setMessageBag($validator->errors());
-
-            throw $exception;
-        }
     }
 }

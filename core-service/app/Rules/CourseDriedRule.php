@@ -9,16 +9,15 @@ use Illuminate\Support\Carbon;
 
 class CourseDriedRule extends EgalRule
 {
-
     public function validate($attribute, $value, $parameters = null): bool
     {
-        $lesson = Lesson::actionGetItem($value);
-        $course = Course::actionGetItem($lesson['course_id']);
+        $lesson = Lesson::findItem($value);
+        $course = Course::find($lesson->course_id);
         return Carbon::parse($course['end_date'])->getTimestamp() > Carbon::now()->getTimestamp();
     }
 
     public function message(): string
     {
-        return parent::message("Course dried up"); // TODO
+        return parent::message("Course dried up");
     }
 }

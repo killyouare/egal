@@ -2,50 +2,34 @@
 
 namespace App\Listeners;
 
-use App\Events\UpdatedLessonUserEvent;
+use App\Events\AbstractEvent;
 use App\Models\CourseUser;
-use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\LessonUser;
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
 
-class UpdatedLessonUserListener
+class UpdatedLessonUserListener extends AbstractListener
 {
-    public function handle(UpdatedLessonUserEvent $event): void
+
+    public function handle(AbstractEvent $event): void
     {
-        $lessonuser = $event->model->getAttributes();
-        $lesson = Lesson::actionGetItem($lessonuser['lesson_id']);
-        $lessons = Lesson::actionGetItems(null, [], [
-            [
-                "course_id", "eq", $lesson['course_id']
-            ],
+        parent::handle($event);
 
-        ], []);
-        $lessonsCount = Lesson::actionGetCount([
-            [
-                "course_id", "eq", $lesson['course_id']
-            ],
+        $attributes = $event->getAttrs();
 
-        ])['count'];
-        $count = 0;
-        foreach ($lessons['items'] as $lesson) {
-            $count += LessonUser::actionGetCount([
-                ["user_id", "eq", $lessonuser['user_id']],
-                "AND",
-                ["lesson_id", "eq", $lesson['id']],
-                "AND",
-                ["is_passed", "eq", true]
-            ])['count'];
-        }
-        $cuId = CourseUser::actionGetItems(null, [], [
-            ['user_id', 'eq', $lessonuser['user_id']],
-            "AND",
-            ['course_id', "eq", $lesson['course_id']]
-        ], [])['items'][0]['id'];
+        $course = Lesson::findItem($attributes['lesson_id'])->course;
+        $lessons =  $course->lessons;
 
-        CourseUser::actionUpdate($cuId, [
-            'percentage_passing' => round($count / $lessonsCount * 100)
+        $courseUser = CourseUser::findByFields([
+            'course_id' => $course->id,
+            'user_id' => $attributes['user_id'],
         ]);
+
+        $countPassed = LessonUser::query()->whereIn('lesson_id', $lessons->pluck('id'))
+            ->where([
+                'user_id' => $attributes['user_id'],
+                'is_passed' => true
+            ])->count();
+
+        $courseUser->update(['percentage_passing' => round(($countPassed / $lessons->count() * 100))]);
     }
 }

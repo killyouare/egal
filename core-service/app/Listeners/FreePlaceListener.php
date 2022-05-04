@@ -2,17 +2,20 @@
 
 namespace App\Listeners;
 
+use App\Events\AbstractEvent;
 use App\Models\Course;
-use App\Events\CreatingModelCourseUserEvent;
 use App\Exceptions\StudentCapacityException;
 
-class FreePlaceListener
+class FreePlaceListener extends AbstractListener
 {
 
-    public function handle(CreatingModelCourseUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
-        $course = Course::actionGetItem($event->model->getAttribute('course_id'));
-        if ($course['student_capacity'] < 1) {
+        parent::handle($event);
+
+        $student_capacity = Course::findItem($event->getAttr('course_id'))->student_capacity;
+
+        if ($student_capacity < 1) {
             throw new StudentCapacityException();
         }
     }

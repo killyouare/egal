@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LessonFactory extends Factory
 {
-
     protected $model = Lesson::class;
 
     public function definition(): array
     {
         return [
             'theme' => $this->faker->word(),
-            'course_id' => Course::all()->random()->id,
+            'course_id' => Course::factory(),
         ];
     }
 }

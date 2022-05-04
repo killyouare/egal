@@ -18,10 +18,8 @@ class UsersDebugSeeder extends Seeder
         $this->faker = Container::getInstance()->make(Generator::class);
     }
 
-
     public function run()
     {
-
         /** @var Role $role */
         $role = Role::factory()->create();
 

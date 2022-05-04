@@ -42,7 +42,7 @@ services:
       APP_SERVICE_NAME: auth
       APP_SERVICES: core:q4C3YNiUe9*Ln8MH@b7#TP6fJk2m1h0z
       APP_SERVICE_KEY: uZsLnAJz35FWUTVx@eg#Xirv6I*jcw2Y
-      DB_DATABSE: auth
+      DB_DATABASE: auth
       DB_HOST: ${PROJECT_NAME:-project}-database
       DB_PASSWORD: ${DATABASE_PASSWORD:-password}
       RABBITMQ_HOST: ${PROJECT_NAME:-project}-rabbitmq
@@ -57,7 +57,7 @@ services:
     environment:
       APP_SERVICE_NAME: core
       APP_SERVICE_KEY: q4C3YNiUe9*Ln8MH@b7#TP6fJk2m1h0z
-      DB_DATABSE: core
+      DB_DATABASE: core
       DB_HOST: ${PROJECT_NAME:-project}-database
       DB_PASSWORD: ${DATABASE_PASSWORD:-password}
       RABBITMQ_HOST: ${PROJECT_NAME:-project}-rabbitmq

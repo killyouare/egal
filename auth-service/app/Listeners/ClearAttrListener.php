@@ -2,17 +2,17 @@
 
 namespace App\Listeners;
 
-use App\Events\SaveModelUserEvent;
+use App\Events\AbstractEvent;
 
-
-class ClearAttrListener
+class ClearAttrListener extends AbstractListener
 {
 
-
-  public function handle(SaveModelUserEvent $event): void
+  public function handle(AbstractEvent $event): void
   {
-    $event->user->offsetUnset('first_name');
-    $event->user->offsetUnset('last_name');
-    $event->user->offsetUnset('phone');
+    parent::handle($event);
+
+    $event->ClearModelAttr('first_name');
+    $event->ClearModelAttr('last_name');
+    $event->ClearModelAttr('phone');
   }
 }

@@ -2,21 +2,21 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
-use App\Events\CreatedModelCourseUserEvent;
+use App\Events\AbstractEvent;
 use App\Models\Course;
 
-class UpdateCourseListener
+class UpdateCourseListener extends AbstractListener
 {
 
-    public function handle(CreatedModelCourseUserEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
-        $courseId = $event->model->getAttribute('course_id');
-        $course = Course::actionGetItem($courseId);
+        parent::handle($event);
 
-        Course::actionUpdate($courseId, [
-            "student_capacity" => $course['student_capacity'] - 1
+        $courseId = $event->getAttr('course_id');
+        $course = Course::findItem($courseId);
+
+        $course->update([
+            "student_capacity" => $course->student_capacity - 1
         ]);
     }
 }

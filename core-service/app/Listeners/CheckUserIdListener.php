@@ -2,18 +2,19 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\GlobalEventListener;
-use Egal\Core\Listeners\EventListener;
-use App\Events\CreatingModelCourseUserEvent;
+use App\Events\AbstractEvent;
 use Egal\Core\Session\Session;
 use App\Exceptions\NotOwnerException;
 
-class CheckUserIdListener
+class CheckUserIdListener extends AbstractListener
 {
-
-    public function handle($event): void
+    public function handle(AbstractEvent $event): void
     {
-        if ($event->model->getAttribute("user_id") != Session::getUserServiceToken()->getUid()) {
+        parent::handle($event);
+
+        $user_id = $event->getAttr("user_id");
+
+        if ($user_id !== Session::getUserServiceToken()->getUid()) {
             throw new NotOwnerException();
         }
     }

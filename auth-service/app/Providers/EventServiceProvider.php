@@ -4,28 +4,27 @@
 
 namespace App\Providers;
 
-use Egal\Core\Events\UserServiceTokenDetectedEvent;
+use App\Events\LoginUserEvent;
 use Egal\Core\Events\EventServiceProvider as ServiceProvider;
 use App\Events\SaveModelUserEvent;
-use App\Events\SendMessageEvent;
-use App\Listeners\AdditionUserServiceTokenListener;
 use App\Listeners\SendMessageListener;
 use App\Listeners\ValidateListener;
 use App\Listeners\ClearAttrListener;
+use App\Listeners\SetUUIDListener;
+use App\Listeners\UpdateLoginTimeListener;
 
 class EventServiceProvider extends ServiceProvider
 {
 
-
-    /**
-     * Определение обработчиков локальных событий
-     */
     protected $listen = [
         SaveModelUserEvent::class => [
+            SetUUIDListener::class,
             ValidateListener::class,
             SendMessageListener::class,
             ClearAttrListener::class,
         ],
-
+        LoginUserEvent::class => [
+            UpdateLoginTimeListener::class,
+        ]
     ];
 }

@@ -2,22 +2,22 @@
 
 namespace App\Listeners;
 
-use Egal\Core\Listeners\EventListener;
-use App\Events\SaveModelUserEvent;
-use Illuminate\Support\Facades\Log;
+use App\Events\AbstractEvent;
+use Egal\Core\Communication\Request;
+use Exception;
 
-class SendMessageListener
+class SendMessageListener extends AbstractListener
 {
 
-
-    public function handle($event): void
+    public function handle(AbstractEvent $event): void
     {
-        $attributes = $event->arguments;
+        parent::handle($event);
+        $attributes = $event->getAttrs();
 
-        $request = new \Egal\Core\Communication\Request(
-            'core', // Сервис назначения запроса
-            'User', // К какой модели обращение
-            'create', // К какому действию обращение
+        $request = new Request(
+            'core',
+            'User',
+            'create',
             [
                 "attributes" => [
                     "id" =>  $attributes['id'],
@@ -27,14 +27,15 @@ class SendMessageListener
                 ]
             ],
         );
+
         $request->call();
 
         $response = $request->getResponse();
-        if ($response->getStatusCode() != 200) {
-            $actionErrorMessage = $response->getActionErrorMessage(); // Получение сообщения ошибки
 
-        } else {
-            $actionResultMessage = $response->getActionResultMessage(); // Получение сообщения результата выполнения [действия](/_glossary?id=действия) }
+        if ($response->getStatusCode() !== 200) {
+            $actionErrorMessage = (string)$response->getActionErrorMessage();
+            $actionErrorCode = $response->getStatusCode();
+            throw new Exception($actionErrorMessage, $actionErrorCode);
         }
     }
 }

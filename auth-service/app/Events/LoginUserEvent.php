@@ -4,7 +4,7 @@ namespace App\Events;
 
 use Egal\Model\Model;
 
-class CreatingModelCourseUserEvent extends AbstractEvent
+class LoginUserEvent extends AbstractEvent
 {
 
     public function __construct(Model $model)

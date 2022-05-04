@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Egal\Model\Model as EgalModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property $id {@property-type field} {@prymary-key}
@@ -26,21 +27,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Course extends EgalModel
 {
-  use HasFactory;
+	use HasFactory;
 
-  protected $fillable = [
-    "title",
-    "student_capacity",
-    "start_date",
-    "end_date",
-    "has_certificate",
-  ];
-  protected $guarder = [
-    "id"
-  ];
+	protected $fillable = [
+		"title",
+		"student_capacity",
+		"start_date",
+		"end_date",
+		"has_certificate",
+	];
+	protected $guarder = [
+		"id"
+	];
 
-  public function lessons()
-  {
-    return $this->hasMany(Lesson::class);
-  }
+	public function lessons(): HasMany
+	{
+		return $this->hasMany(Lesson::class);
+	}
+
+	public static function findItem(int $id): mixed
+	{
+		$query = new static();
+		return $query->query()->find($id);
+	}
 }
