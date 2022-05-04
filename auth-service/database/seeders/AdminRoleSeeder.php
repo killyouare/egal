@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminRoleSeeder extends Seeder
 {
-
     protected $faker;
 
     public function __construct()

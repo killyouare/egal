@@ -13,9 +13,9 @@ class CourseSeeder extends Seeder
    *
    * @return void
    */
-  public function run()
-  {
+    public function run()
+    {
 
-    Course::factory(7)->has(Lesson::factory(rand(1, 10)))->create();
-  }
+        Course::factory(7)->has(Lesson::factory(rand(1, 10)))->create();
+    }
 }

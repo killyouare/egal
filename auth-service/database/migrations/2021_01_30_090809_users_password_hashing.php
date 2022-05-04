@@ -6,7 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class UsersPasswordHashing extends Migration
 {
-
     public function up(): void
     {
         # TODO: Реализовать на SQL
@@ -26,5 +25,4 @@ class UsersPasswordHashing extends Migration
         # TODO: Реализовать
         throw new Exception('Migrate rollback impossible!');
     }
-
 }

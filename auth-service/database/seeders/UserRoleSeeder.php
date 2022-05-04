@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class UserRoleSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -25,5 +24,4 @@ class UserRoleSeeder extends Seeder
             Role::query()->create($userRoleAttributes);
         }
     }
-
 }

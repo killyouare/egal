@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class DeveloperRoleSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -25,5 +24,4 @@ class DeveloperRoleSeeder extends Seeder
             Role::query()->create($developerRoleAttributes);
         }
     }
-
 }

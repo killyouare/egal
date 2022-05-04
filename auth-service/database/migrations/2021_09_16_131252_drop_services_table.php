@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class DropServicesTable extends Migration
 {
-
     public function up()
     {
         Schema::dropIfExists('services');
@@ -21,5 +20,4 @@ class DropServicesTable extends Migration
             $table->timestamps();
         });
     }
-
 }

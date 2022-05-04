@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class AuthenticatePermissionSeeder extends Seeder
 {
-
     /**
      * Run the database seeds.
      *
@@ -25,5 +24,4 @@ class AuthenticatePermissionSeeder extends Seeder
             Permission::query()->create($authenticatePermissionAttributes);
         }
     }
-
 }
