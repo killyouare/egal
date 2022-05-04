@@ -18,11 +18,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Collection $roles          {@property-type relation}
  * @property Collection $permissions    {@property-type relation}
  *
- * @action getItems                     {@m guest}
  */
 class UserDebug extends User
 {
-
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'id');

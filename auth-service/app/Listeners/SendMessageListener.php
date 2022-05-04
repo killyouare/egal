@@ -8,11 +8,10 @@ use Exception;
 
 class SendMessageListener extends AbstractListener
 {
-
     public function handle(AbstractEvent $event): void
     {
         parent::handle($event);
-        $attributes = $event->getAttrs();
+        $attributes = $event->getAttributes();
 
         $request = new Request(
             'core',

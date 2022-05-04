@@ -9,12 +9,11 @@ use App\Models\LessonUser;
 
 class UpdatedLessonUserListener extends AbstractListener
 {
-
     public function handle(AbstractEvent $event): void
     {
         parent::handle($event);
 
-        $attributes = $event->getAttrs();
+        $attributes = $event->getAttributes();
 
         $course = Lesson::findItem($attributes['lesson_id'])->course;
         $lessons =  $course->lessons;

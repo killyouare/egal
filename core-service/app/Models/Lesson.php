@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property $updated_at {@property-type field}
  *
  * @property $course {@property-type relation}
- * 
+ *
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access admin}
  * @action getItems {@roles-access user|admin}
@@ -35,15 +35,14 @@ class Lesson extends EgalModel
         return $this->belongsTo(Course::class, 'course_id');
     }
 
-    public static function  getItemsByCourseId(int $course_id): mixed
+    public static function getItemsByCourseId(int $course_id): mixed
     {
         $model = new static();
         return $model->query()->where(['course_id' => $course_id]);
     }
 
-    public static function findItem(int $id)
+    public static function findItem(int $id): self
     {
-        $query = new static();
-        return $query->query()->find($id);
+        return self::query()->where(["id" => $id])->firstOrFail();
     }
 }

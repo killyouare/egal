@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property $updated_at {@property-type field}
  *
  * @property Collection $lessons {@property-type relation}
- * 
+ *
  * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access user}
  * @action getItems {@roles-access user|admin}
@@ -27,27 +27,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Course extends EgalModel
 {
-	use HasFactory;
+    use HasFactory;
 
-	protected $fillable = [
-		"title",
-		"student_capacity",
-		"start_date",
-		"end_date",
-		"has_certificate",
-	];
-	protected $guarder = [
-		"id"
-	];
+    protected $fillable = [
+        "title",
+        "student_capacity",
+        "start_date",
+        "end_date",
+        "has_certificate",
+    ];
+    protected $guarder = [
+        "id"
+    ];
 
-	public function lessons(): HasMany
-	{
-		return $this->hasMany(Lesson::class);
-	}
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(Lesson::class);
+    }
 
-	public static function findItem(int $id): mixed
-	{
-		$query = new static();
-		return $query->query()->find($id);
-	}
+    public static function findItem(int $id): self
+    {
+        return self::query()->where("id", $id)->firstOrFail();
+    }
 }

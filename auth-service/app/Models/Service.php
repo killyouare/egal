@@ -10,5 +10,4 @@ use Egal\AuthServiceDependencies\Models\Service as BaseService;
  */
 class Service extends BaseService
 {
-
 }

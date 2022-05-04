@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use App\Events\LoginUserEvent;
-use App\Exceptions\EmptyPasswordException;
 use App\Events\SaveModelUserEvent;
 use Egal\Auth\Tokens\UserMasterRefreshToken;
 use Egal\Auth\Tokens\UserMasterToken;
-use Egal\AuthServiceDependencies\Exceptions\LoginException;
 use Egal\AuthServiceDependencies\Models\User as BaseUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -15,7 +13,6 @@ use Illuminate\Support\Collection;
 use Staudenmeir\EloquentHasManyDeep\HasManyDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Carbon\Carbon;
 
 /**
  * @property $id                        {@property-type field}  {@primary-key}
@@ -67,28 +64,17 @@ class User extends BaseUser
         'creating' => SaveModelUserEvent::class,
     ];
 
-    public static function actionRegister($attributes = []): User
+    public static function actionRegister($attributes = []): array
     {
-        $user = new static();
-
-        $user->fill($attributes);
-        $user->save();
-
-        return $user;
+        return self::actionCreate($attributes);
     }
 
 
     public static function actionLogin(string $email, string $password): array
     {
-        $user = self::query()
-            ->where('email', '=', $email)
-            ->first();
+        event(new LoginUserEvent($email, $password));
 
-        if (!$user || !password_verify($password, $user->getAttribute('password'))) {
-            throw new LoginException('Incorrect Email or password!');
-        }
-
-        event(new LoginUserEvent($user));
+        $user = self::getUserByEmail($email);
 
         $umt = new UserMasterToken();
         $umt->setSigningKey(config('app.service_key'));
@@ -134,7 +120,7 @@ class User extends BaseUser
     protected function password(): Attribute
     {
         return Attribute::set(
-            fn ($value) => password_hash($value, PASSWORD_BCRYPT),
+            fn (string $value): string => password_hash($value, PASSWORD_BCRYPT),
         );
     }
 
@@ -146,5 +132,12 @@ class User extends BaseUser
     protected function getPermissions(): array
     {
         return array_unique($this->permissions->pluck('id')->toArray());
+    }
+
+    public static function getUserByEmail(string $email): ?self
+    {
+        return self::query()
+            ->where('email', '=', $email)
+            ->first();
     }
 }

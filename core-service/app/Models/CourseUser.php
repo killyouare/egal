@@ -16,29 +16,27 @@ use App\Events\CreatedModelCourseUserEvent;
  *
  * @action create {@roles-access user}
  * @action getItems {@roles-access user|admin}
- * 
+ *
  */
 class CourseUser extends EgalModel
 {
+    protected $fillable = [
+        "user_id",
+        "course_id",
+        "percentage_passing"
+    ];
 
-  protected $fillable = [
-    "user_id",
-    "course_id",
-    "percentage_passing"
-  ];
+    protected $guarder = [
+        "id"
+    ];
 
-  protected $guarder = [
-    "id"
-  ];
+    protected $dispatchesEvents = [
+        'creating' => CreatingModelCourseUserEvent::class,
+        'created' => CreatedModelCourseUserEvent::class,
+    ];
 
-  protected $dispatchesEvents = [
-    'creating' => CreatingModelCourseUserEvent::class,
-    'created' => CreatedModelCourseUserEvent::class,
-  ];
-
-  public static function findByFields(array $fields)
-  {
-    $courseUser = new static();
-    return $courseUser->where($fields);
-  }
+    public static function findByFields(array $fields): self
+    {
+        return self::query()->where($fields)->firstOrFail();
+    }
 }

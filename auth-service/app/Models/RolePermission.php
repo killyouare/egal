@@ -19,7 +19,6 @@ use Egal\Model\Model;
  */
 class RolePermission extends Model
 {
-
     protected $fillable = [
         'role_id',
         'permission_id',
@@ -29,5 +28,4 @@ class RolePermission extends Model
         'created_at',
         'updated_at',
     ];
-
 }

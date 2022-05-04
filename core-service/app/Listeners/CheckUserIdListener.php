@@ -12,7 +12,7 @@ class CheckUserIdListener extends AbstractListener
     {
         parent::handle($event);
 
-        $user_id = $event->getAttr("user_id");
+        $user_id = $event->getAttribute("user_id");
 
         if ($user_id !== Session::getUserServiceToken()->getUid()) {
             throw new NotOwnerException();

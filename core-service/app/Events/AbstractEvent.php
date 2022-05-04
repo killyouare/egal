@@ -8,20 +8,26 @@ use Illuminate\Support\Facades\Log;
 
 abstract class AbstractEvent extends EgalEvent
 {
-
     protected Model $model;
 
     public function __construct(Model $model)
     {
         Log::info(
-            'Event [' . get_class($this)
-                . '] was fired with model: ['
-                . get_class($model)
-                . ']. (Changes: ' . $model->wasChanged()
-                . ', Dirty: ' . $model->isDirty()
-                . ") Serialized model: ",
-            [$model->toArray()]
+            vsprintf(
+                "Event [%s] was fired with model [%s]. (%s.) %s",
+                [
+                    get_class($this),
+                    get_class($model),
+                    $model->wasChanged()
+                        ? "Changes: " . $model->wasChanged()
+                        : "Dirty: " . $model->isDirty(),
+                    $model->getAttributes()
+                        ? "Serialized model $model"
+                        : "",
+                ]
+            )
         );
+
         $this->setModel($model);
     }
 
@@ -35,22 +41,22 @@ abstract class AbstractEvent extends EgalEvent
         $this->model = $model;
     }
 
-    public function getAttrs(): array
+    public function getAttributes(): array
     {
         return $this->model->getAttributes();
     }
 
-    public function getAttr(string $name): mixed
+    public function getAttribute(string $name): mixed
     {
         return $this->model->getAttribute($name);
     }
 
-    public function setModelAttr(string $name, mixed $value): void
+    public function setModelAttribute(string $name, mixed $value): void
     {
         $this->model->setAttribute($name, $value);
     }
 
-    public function clearModelAttr(string $attr): void
+    public function clearModelAttribute(string $attr): void
     {
         $this->model->offsetUnset($attr);
     }

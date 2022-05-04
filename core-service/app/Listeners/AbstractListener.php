@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Log;
 
 abstract class AbstractListener
 {
-    public  function handle(AbstractEvent $event): void
+    public function handle(AbstractEvent $event): void
     {
-        Log::info("Listener ["
-            . get_class($this)
-            . "] event ["
-            . get_class($event)
-            . "].");
+        Log::info(
+            vsprintf(
+                "Listener [%s] event [%s].",
+                [
+                    get_class($this),
+                    get_class($event),
+                ]
+            )
+        );
     }
 }

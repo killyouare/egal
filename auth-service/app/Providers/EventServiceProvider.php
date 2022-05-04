@@ -12,10 +12,10 @@ use App\Listeners\ValidateListener;
 use App\Listeners\ClearAttrListener;
 use App\Listeners\SetUUIDListener;
 use App\Listeners\UpdateLoginTimeListener;
+use App\Listeners\ValidateLoginListener;
 
 class EventServiceProvider extends ServiceProvider
 {
-
     protected $listen = [
         SaveModelUserEvent::class => [
             SetUUIDListener::class,
@@ -24,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
             ClearAttrListener::class,
         ],
         LoginUserEvent::class => [
+            ValidateLoginListener::class,
             UpdateLoginTimeListener::class,
         ]
     ];

@@ -8,12 +8,11 @@ use App\Models\LessonUser;
 
 class CreateLessonUserListener extends AbstractListener
 {
-
     public function handle(AbstractEvent $event): void
     {
         parent::handle($event);
 
-        $attributes = $event->getAttrs();
+        $attributes = $event->getAttributes();
 
         $lessons = Lesson::getItemsByCourseId($attributes['course_id'])->get()->toArray();
 

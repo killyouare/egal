@@ -7,12 +7,11 @@ use App\Helpers\MicroserviceValidator;
 
 class UniqueListener extends AbstractListener
 {
-
     public function handle(AbstractEvent $event): void
     {
         parent::handle($event);
 
-        $attributes = $event->getAttrs();
+        $attributes = $event->getAttributes();
         $course_id = $attributes['course_id'];
 
         MicroserviceValidator::validate($attributes, [

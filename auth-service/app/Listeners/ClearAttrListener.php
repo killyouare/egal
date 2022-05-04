@@ -6,13 +6,12 @@ use App\Events\AbstractEvent;
 
 class ClearAttrListener extends AbstractListener
 {
+    public function handle(AbstractEvent $event): void
+    {
+        parent::handle($event);
 
-  public function handle(AbstractEvent $event): void
-  {
-    parent::handle($event);
-
-    $event->ClearModelAttr('first_name');
-    $event->ClearModelAttr('last_name');
-    $event->ClearModelAttr('phone');
-  }
+        $event->clearModelAttribute('first_name');
+        $event->clearModelAttribute('last_name');
+        $event->clearModelAttribute('phone');
+    }
 }
