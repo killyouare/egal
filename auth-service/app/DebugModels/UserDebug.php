@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  */
 class UserDebug extends User
 {
+    protected $table = "users";
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'id');
