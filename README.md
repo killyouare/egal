@@ -1,5 +1,3 @@
-- @action test {@statuses-access guest}
-
 # Egal test task
 
 ## Установка
