@@ -23,11 +23,6 @@ class CourseUser extends EgalModel
     protected $fillable = [
         "user_id",
         "course_id",
-        "percentage_passing"
-    ];
-
-    protected $guarder = [
-        "id"
     ];
 
     protected $dispatchesEvents = [

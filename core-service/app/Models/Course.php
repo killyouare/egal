@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Collection $lessons {@property-type relation}
  *
  * @action getMetadata {@roles-access admin}
- * @action getItem {@roles-access user}
+ * @action getItem {@roles-access admin}
  * @action getItems {@roles-access user|admin}
  * @action create {@roles-access admin}
  * @action update {@roles-access admin}
@@ -35,9 +35,6 @@ class Course extends EgalModel
         "start_date",
         "end_date",
         "has_certificate",
-    ];
-    protected $guarder = [
-        "id"
     ];
 
     public function lessons(): HasMany

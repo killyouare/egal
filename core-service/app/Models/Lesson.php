@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @property $course {@property-type relation}
  *
- * @action getMetadata {@roles-access admin}
  * @action getItem {@roles-access admin}
  * @action getItems {@roles-access user|admin}
  * @action create {@roles-access admin}
@@ -37,8 +36,8 @@ class Lesson extends EgalModel
 
     public static function getItemsByCourseId(int $course_id): mixed
     {
-        $model = new static();
-        return $model->query()->where(['course_id' => $course_id]);
+
+        return self::query()->where(['course_id' => $course_id]);
     }
 
     public static function findItem(int $id): self

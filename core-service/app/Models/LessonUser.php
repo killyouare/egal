@@ -30,7 +30,7 @@ class LessonUser extends EgalModel
         "updated" => UpdatedLessonUserEvent::class
     ];
 
-    public static function createItem(array $items)
+    public static function createItem(array $items): self
     {
         $course = new static();
         $course->fill($items);
