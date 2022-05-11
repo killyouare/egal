@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use Egal\Model\Model;
+use Killyouare\Helpers\AbstractEvent;
 
 class CreatedModelCourseUserEvent extends AbstractEvent
 {

@@ -71,5 +71,6 @@ $app->register(Egal\Core\ServiceProvider::class);
 $app->register(Egal\Model\ServiceProvider::class);
 $app->register(Egal\AuthServiceDependencies\ServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
-$app->register(App\Providers\ServiceProvider::class);
+$app->register(\Killyouare\DebugService\ServiceProvider::class);
+
 return $app;

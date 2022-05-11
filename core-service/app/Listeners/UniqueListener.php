@@ -2,8 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\AbstractEvent;
-use App\Helpers\MicroserviceValidator;
+use Killyouare\Helpers\AbstractEvent;
+use Killyouare\Helpers\AbstractListener;
+use Killyouare\Helpers\MicroserviceValidator;
 
 class UniqueListener extends AbstractListener
 {

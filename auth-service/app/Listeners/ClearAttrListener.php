@@ -2,7 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Events\AbstractEvent;
+use Killyouare\Helpers\AbstractEvent;
+use Killyouare\Helpers\AbstractListener;
 
 class ClearAttrListener extends AbstractListener
 {

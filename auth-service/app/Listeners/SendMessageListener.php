@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Events\AbstractEvent;
 use Egal\Core\Communication\Request;
 use Exception;
+use Killyouare\Helpers\AbstractEvent;
+use Killyouare\Helpers\AbstractListener;
 
 class SendMessageListener extends AbstractListener
 {

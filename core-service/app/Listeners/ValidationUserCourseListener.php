@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Events\AbstractEvent;
-use App\Helpers\CheckArrayForMatches;
-use App\Helpers\MicroserviceValidator;
+use Killyouare\Helpers\AbstractEvent;
+use Killyouare\Helpers\AbstractListener;
+use Killyouare\Helpers\CheckArrayForMatches;
+use Killyouare\Helpers\MicroserviceValidator;
 use Egal\Core\Session\Session;
 
 class ValidationUserCourseListener extends AbstractListener

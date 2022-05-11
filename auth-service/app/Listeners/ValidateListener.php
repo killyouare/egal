@@ -2,8 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Events\AbstractEvent;
-use App\Rules\PhoneNumberRule;
+use Killyouare\Helpers\AbstractEvent;
+use Killyouare\Helpers\AbstractListener;
 use App\Helpers\MicroserviceValidator;
 
 class ValidateListener extends AbstractListener

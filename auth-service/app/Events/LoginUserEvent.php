@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use Egal\Model\Model;
+use Killyouare\Helpers\AbstractEvent;
 
 class LoginUserEvent extends AbstractEvent
 {
