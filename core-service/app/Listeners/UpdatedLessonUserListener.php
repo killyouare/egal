@@ -30,6 +30,6 @@ class UpdatedLessonUserListener extends AbstractListener
                 'is_passed' => true
             ])->count();
 
-        $courseUser->update(['percentage_passing' => round(($countPassed / $lessons->count() * 100))]);
+        $courseUser->update(['percentage_passing' => (int)($countPassed / $lessons->count() * 100)]);
     }
 }
