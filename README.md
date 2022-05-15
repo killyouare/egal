@@ -7,7 +7,7 @@
 - С помощью git clone:
 
   ```bash
-  git clone https://github.com/killyouare/egal.git
+  git clone https://github.com/killyouare/egal
   ```
 
 - Загрузить zip-архив с [github](https://github.com/killyouare/egal). После загрузки распаковать в текущую директорию.
